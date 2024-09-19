@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 2 - APT3080 Management Information Systems</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&display=swap">
+    <style>
+        body {
+            font-family: 'Chewy', cursive;
+            background-color: #fff;
+            color: #000;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        header {
+            background-color: #fff;
+            color: #000;
+            padding: 10px;
+            margin-bottom: 0;
+            font-size: 1.3em;
+            box-sizing: border-box;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align items to the start to reduce space */
+            height: calc(100vh - 70px); /* Adjust height to fit better */
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .content-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 85%;
+            max-width: 900px;
+            height: auto; /* Allow height to adjust based on content */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: left;
+            box-sizing: border-box;
+            margin-top: 20px; /* Add margin to push up */
+        }
+
+        .content-card h2 {
+            font-size: 1.5em;
+            margin-top: 0;
+        }
+
+        .question {
+            font-size: 1.0em;
+            margin-bottom: 20px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between; /* Space buttons to the left and right */
+            gap: 10px;
+        }
+
+        .controls button {
+            font-family: 'Chewy', cursive;
+            font-size: 1.2em;
+            padding: 10px 20px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .controls button:hover {
+            background-color: #555;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 600px) {
+            header {
+                font-size: 1.5em;
+                padding: 8px;
+            }
+
+            main {
+                height: calc(100vh - 60px); /* Adjust height for mobile */
+            }
+
+            .content-card {
+                padding: 15px;
+                margin-top: 10px; /* Adjust margin for mobile */
+            }
+
+            .content-card h2 {
+                font-size: 1.2em;
+            }
+
+            .question {
+                font-size: 1.5em;
+            }
+
+            .controls button {
+                font-size: 1em;
+                padding: 6px 12px; /* Smaller padding for mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Week 2 - APT3080 Management Information Systems</h1>
+    </header>
+    <main>
+        <section class="content-card">
+            <div id="question-container">
+                <div id="question" class="question"></div>
+            </div>
+            <div class="controls">
+                <button id="prev-btn" class="hidden">Previous</button>
+                <button id="next-btn">Next</button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const data = 
+        {
+    "chapters": [
+        {
+            "chapter": "2",
+            "title": "Global E-Business and Collaboration",
+            "sections": [
+                {
+                    "sectionTitle": "Chapter-Opening Case: America’s Cup 2010: USA Wins with Information Technology",
+                    "questions": [
+                        "How did information technology contribute to the USA's victory in the America's Cup 2010?"
+                    ]
+                },
+                {
+                    "sectionTitle": "2.1 Components of a Business",
+                    "questions": [
+                        "What are the basic functions of a business?"
+                    ]
+                },
+                {
+                    "sectionTitle": "2.2 Types of Business Information Systems",
+                    "questions": [
+                        "What are systems for management decision-making and business intelligence?"
+                    ]
+                },
+                {
+                    "sectionTitle": "2.3 Systems for Collaboration and Teamwork",
+                    "questions": [
+                        "What is the concept of collaboration in a business context?"
+                    ]
+                },
+                {
+                    "sectionTitle": "2.4 The Information Systems Function in Business",
+                    "questions": [
+                        "What functions and responsibilities does the Information Systems Department have?"
+                    ]
+                },
+                {
+                    "sectionTitle": "Review Summary",
+                    "questions": [
+                        "What are the key terms from this chapter?"
+                    ]
+                },
+                {
+                    "sectionTitle": "Hands-on MIS Projects",
+                    "questions": [
+                        "How can spreadsheets be used to improve decision-making when selecting suppliers?"
+                    ]
+                },
+                {
+                    "sectionTitle": "Video Cases",
+                    "questions": [
+                        "What are the key aspects of management decisions and systems discussed in the video cases?"
+                    ]
+                },
+                {
+                    "sectionTitle": "Business Problem-Solving Case: Collaboration and Innovation at Procter & Gamble",
+                    "questions": [
+                        "How did Procter & Gamble leverage collaboration and innovation to address business challenges?"
+                    ]
+                }
+            ]
+        }
+    ]
+}
+
+        let currentChapterIndex = 0;
+        let currentSectionIndex = 0;
+
+        function displaySection() {
+            const chapter = data.chapters[currentChapterIndex];
+            const section = chapter.sections[currentSectionIndex];
+
+            const questionDiv = document.getElementById('question');
+            questionDiv.innerHTML = `
+                <h2>${section.sectionTitle}</h2>
+                <ul>
+                    ${section.questions.map(q => `<li>${q}</li>`).join('')}
+                </ul>
+            `;
+
+            document.getElementById('prev-btn').classList.toggle('hidden', currentChapterIndex === 0 && currentSectionIndex === 0);
+            document.getElementById('next-btn').textContent = currentSectionIndex === chapter.sections.length - 1 ? 'Next Chapter' : 'Next';
+        }
+
+        function handleButtonClick(event) {
+            const isNext = event.target.id === 'next-btn';
+            const chapter = data.chapters[currentChapterIndex];
+
+            if (isNext) {
+                if (currentSectionIndex < chapter.sections.length - 1) {
+                    currentSectionIndex++;
+                } else if (currentChapterIndex < data.chapters.length - 1) {
+                    currentChapterIndex++;
+                    currentSectionIndex = 0;
+                } else {
+                    alert('You have completed all sections and chapters!');
+                    return;
+                }
+            } else {
+                if (currentSectionIndex > 0) {
+                    currentSectionIndex--;
+                } else if (currentChapterIndex > 0) {
+                    currentChapterIndex--;
+                    currentSectionIndex = data.chapters[currentChapterIndex].sections.length - 1;
+                } else {
+                    return;
+                }
+            }
+            displaySection();
+        }
+
+        document.getElementById('prev-btn').addEventListener('click', handleButtonClick);
+        document.getElementById('next-btn').addEventListener('click', handleButtonClick);
+
+        displaySection();
+    });
+    </script>
+</body>
+</html>

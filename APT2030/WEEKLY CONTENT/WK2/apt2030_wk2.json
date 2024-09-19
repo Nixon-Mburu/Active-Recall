@@ -1,0 +1,50 @@
+{
+    "title": "Week 2",
+    "topics": [
+      {
+        "title": "Binary Representation",
+        "questions": [
+          "Show the binary representation of an 8-bit register."
+        ]
+      },
+      {
+        "title": "Number Systems",
+        "questions": [
+          "Define decimal, binary, octal, and hexadecimal number systems."
+        ]
+      },
+      {
+        "title": "Arithmetic Rules",
+        "questions": [
+          "Decimal Arithmetic Tables: Addition and multiplication rules.",
+          "Binary Arithmetic Tables: Addition and subtraction rules.",
+          "Hexadecimal Arithmetic Tables: Addition and multiplication rules."
+        ]
+      },
+      {
+        "title": "Number Conversions",
+        "questions": [
+          "How to convert common radices using decimal arithmetic."
+        ]
+      },
+      {
+        "title": "Addition in Binary",
+        "questions": [
+          "Perform addition in binary."
+        ]
+      },
+      {
+        "title": "Fixed Point Numbers",
+        "questions": [
+          "Define fixed point number representations."
+        ]
+      },
+      {
+        "title": "Hamming Codes",
+        "questions": [
+          "Explain Hamming codes."
+        ]
+      }
+    ]
+  }
+  

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Courses</title>
+    <link rel="stylesheet" href="/Courses%20Folder/courses.css"> <!-- Absolute path updated -->
+</head>
+<body>
+    <main>
+      
+        <div class="course-title" id="course-title"></div>
+        <div class="course-selection" id="course-selection">
+            <!-- Courses will be dynamically inserted here -->
+        </div>
+    </main>
+    <script>
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const term = getQueryParam('term');
+            console.log('Selected term:', term); 
+            const courseTitle = document.getElementById('course-title');
+            const courseSelection = document.getElementById('course-selection');
+            
+            courseTitle.textContent = `Your courses for ${term}`;
+            
+            if (term === 'FS2024') {
+                courseSelection.innerHTML = `
+                    <a href="/APT2030/HTML%20/apt2030.html" class="course-card" target="_blank">
+                        <h2>APT2030</h2>
+                        <p>Digital Electronics</p>
+                    </a>
+                    <a href="/APT2050/HTML/apt2050.html" class="course-card" target="_blank">
+                        <h2>APT2050</h2>
+                        <p>Computer Networks</p>
+                    </a>
+                    <a href="/APT3010/HTML/apt3010.html" class="course-card" target="_blank">
+                        <h2>APT3010</h2>
+                        <p>Introduction to AI</p>
+                    </a>
+                    <a href="/APT3080/HTML/apt3080.html" class="course-card" target="_blank">
+                        <h2>APT3080</h2>
+                        <p>Management Information Systems</p>
+                    </a>
+                    <a href="/MTH2030/HTML/mth2030.html" class="course-card" target="_blank">
+                        <h2>MTH2030</h2>
+                        <p>Numerical Analysis</p>
+                    </a>
+                `;
+            } else {
+                courseSelection.innerHTML = '<p>No courses available for this term.</p>';
+            }
+        });
+
+    </script>
+</body>
+</html>

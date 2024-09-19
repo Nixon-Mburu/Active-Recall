@@ -1,0 +1,481 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 3 - APT2030 Digital Electronics</title>
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&display=swap">
+    <style>
+      body {
+          font-family: 'Chewy', cursive;
+          background-color: #fff;
+          color: #000;
+          margin: 0;
+          padding: 0;
+          text-align: center;
+          box-sizing: border-box;
+      }
+
+      header {
+          background-color: #fff;
+          color: #000;
+          padding: 10px;
+          margin-bottom: 0;
+          font-size: 1.3em;
+          box-sizing: border-box;
+      }
+
+      main {
+          display: flex;
+          justify-content: center;
+          align-items: flex-start; /* Align items to the start to reduce space */
+          height: calc(100vh - 70px); /* Adjust height to fit better */
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+
+      .content-card {
+          background-color: #fff;
+          padding: 20px;
+          border-radius: 12px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          width: 85%;
+          max-width: 900px;
+          height: auto; /* Allow height to adjust based on content */
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          text-align: left;
+          box-sizing: border-box;
+          margin-top: 20px; /* Add margin to push up */
+      }
+
+      .content-card h2 {
+          font-size: 1.5em;
+          margin-top: 0;
+      }
+
+      .question {
+          font-size: 1.0em;
+          margin-bottom: 20px;
+      }
+
+      .controls {
+          display: flex;
+          justify-content: space-between; /* Space buttons to the left and right */
+          gap: 10px;
+      }
+
+      .controls button {
+          font-family: 'Chewy', cursive;
+          font-size: 1.2em;
+          padding: 10px 20px;
+          background-color: #000;
+          color: #fff;
+          border: none;
+          border-radius: 12px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+      }
+
+      .controls button:hover {
+          background-color: #555;
+      }
+
+      .hidden {
+          display: none;
+      }
+
+      /* Mobile Styles */
+      @media (max-width: 600px) {
+          header {
+              font-size: 1.0em;
+              padding: 8px;
+          }
+
+          main {
+              height: calc(100vh - 60px); /* Adjust height for mobile */
+          }
+
+          .content-card {
+              padding: 15px;
+              margin-top: 10px; /* Adjust margin for mobile */
+          }
+
+          .content-card h2 {
+              font-size: 1.2em;
+          }
+
+          .question {
+              font-size: 1.4em;
+          }
+
+          .controls button {
+              font-size: 1em;
+              padding: 6px 12px; /* Smaller padding for mobile */
+          }
+      }
+  </style>
+</head>
+<body>
+    <header>
+        <h1>Week 3 - APT2030 Digital Electronics</h1>
+    </header>
+    <main>
+        <section class="content-card">
+            <div id="question-container">
+                <div id="question" class="question"></div>
+            </div>
+            <div class="controls">
+                <button id="prev-btn" class="hidden">Previous</button>
+                <button id="next-btn">Next</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- JSON Data -->
+    <script id="json-data" type="application/json">
+    {
+        "title": "Week 3",
+        "topics": [
+          {
+            "title": "Logic Circuits and Boolean Algebra",
+            "questions": [
+              "What are the learning outcomes of this topic?"
+            ]
+          },
+          {
+            "title": "Dual Inline Packages",
+            "questions": [
+              "Explain the following Dual Inline packages:",
+              "a. 14-pin",
+              "b. 20-pin",
+              "c. 28-pin"
+            ]
+          },
+          {
+            "title": "N-Channel MOS (NMOS) Transistor",
+            "questions": [
+              "Describe with a diagram the simplified Circuit Symbol for an N-Channel MOS (NMOS) Transistor."
+            ]
+          },
+          {
+            "title": "P-Channel MOS (PMOS) Transistor",
+            "questions": [
+              "Describe with a diagram the Simplified Circuit Symbol for a P-Channel MOS (PMOS) Transistor."
+            ]
+          },
+          {
+            "title": "CMOS Inverter",
+            "questions": [
+              "With a relevant diagram, understand and describe the following for the CMOS Inverter:",
+              "a. Circuit Diagram",
+              "b. Functional Behavior",
+              "c. Logic Symbol"
+            ]
+          },
+          {
+            "title": "Switch Model for CMOS Inverter",
+            "questions": [
+              "Explain the Switch Model for CMOS Inverter:",
+              "a. LOW Input",
+              "b. HIGH Input"
+            ]
+          },
+          {
+            "title": "CMOS 2-Input NAND Gate",
+            "questions": [
+              "Describe the CMOS 2-Input NAND Gate with a relevant diagram:",
+              "a. Circuit Diagram",
+              "b. Function Table",
+              "c. Logic Symbol"
+            ]
+          },
+          {
+            "title": "Switch Model for CMOS 2-Input NAND Gate",
+            "questions": [
+              "Recall the Switch Model for CMOS 2-Input NAND Gate:",
+              "a. Both Inputs LOW",
+              "b. One Input HIGH",
+              "c. Both Inputs HIGH"
+            ]
+          },
+          {
+            "title": "CMOS 2-Input NOR Gate",
+            "questions": [
+              "Describe the CMOS 2-Input NOR Gate:",
+              "a. Circuit Diagram",
+              "b. Function Table",
+              "c. Logic Symbol"
+            ]
+          },
+          {
+            "title": "Logic Circuit Block Diagram",
+            "questions": [
+              "What is a logic Circuit Block Diagram? Explain with a well-labeled image."
+            ]
+          },
+          {
+            "title": "Truth Tables for Odd-Parity Functions",
+            "questions": [
+              "What are the truth tables for odd-parity functions?",
+              "a. Two-variable",
+              "b. Three-variable",
+              "c. Four-variable"
+            ]
+          },
+          {
+            "title": "Two-Input AND Gate",
+            "questions": [
+              "Explain the Two-Input AND Gate:",
+              "a. Truth table",
+              "b. Logic symbol",
+              "c. Logic equation"
+            ]
+          },
+          {
+            "title": "Two-Input OR Gate",
+            "questions": [
+              "Explain the Two-Input OR Gate:",
+              "a. Truth table",
+              "b. Logic symbol",
+              "c. Logic equation"
+            ]
+          },
+          {
+            "title": "NOT Gate",
+            "questions": [
+              "Describe the NOT Gate:",
+              "a. Truth table",
+              "b. Logic symbol",
+              "c. Logic equation"
+            ]
+          },
+          {
+            "title": "NAND Gate",
+            "questions": [
+              "Explain the NAND Gate:",
+              "a. AND-NOT circuit",
+              "b. Truth table",
+              "c. Logic symbol",
+              "d. Logic equation"
+            ]
+          },
+          {
+            "title": "NOR Gate",
+            "questions": [
+              "Explain the Two-Input NOR Gate:",
+              "a. OR-NOT circuit",
+              "b. Truth table",
+              "c. Logic symbol",
+              "d. Logic equation"
+            ]
+          },
+          {
+            "title": "XOR Gate",
+            "questions": [
+              "Explain the Two-Input XOR Gate:",
+              "a. AND-OR-NOT circuit",
+              "b. Truth table",
+              "c. Logic symbol",
+              "d. Logic equation"
+            ]
+          },
+          {
+            "title": "XNOR Gate",
+            "questions": [
+              "Describe the Two-Input XNOR Gate:",
+              "a. XOR-NOT circuit",
+              "b. Truth table",
+              "c. Logic symbol",
+              "d. Logic equation"
+            ]
+          },
+          {
+            "title": "Combinational Logic Circuit Block Diagram",
+            "questions": [
+              "With a diagram, explain the Combinational Logic Circuit Block Diagram."
+            ]
+          },
+          {
+            "title": "Three-Input Majority Function",
+            "questions": [
+              "Describe the Three-Input Majority Function:",
+              "a. Truth table",
+              "b. Logic equation",
+              "c. Logic circuit"
+            ]
+          },
+          {
+            "title": "Three-Input Parity Function",
+            "questions": [
+              "Explain the Three-Input Parity Function:",
+              "a. Logic circuit",
+              "b. Logic equation"
+            ]
+          },
+          {
+            "title": "Basic Adders",
+            "questions": [
+              "What are basic adders? Explain:",
+              "a. Half-adder",
+              "b. Full-adder block diagrams",
+              "c. Half-adder Truth table",
+              "d. Full-adder Truth table",
+              "e. Half-adder circuit",
+              "f. Full-adder circuit"
+            ]
+          },
+          {
+            "title": "Basic Subtractors",
+            "questions": [
+              "What are basic subtractors? Explain:",
+              "a. Half-subtractor",
+              "b. Full-subtractor block diagrams",
+              "c. Half-subtractor Truth table",
+              "d. Full-subtractor Truth table",
+              "e. Half-subtractor circuit",
+              "f. Full-subtractor circuit"
+            ]
+          },
+          {
+            "title": "Encoders and Decoders",
+            "questions": [
+              "Describe the following:",
+              "a. Encoders",
+              "b. Decoders",
+              "c. Truth tables",
+              "d. Logic circuits"
+            ]
+          },
+          {
+            "title": "Multiplexers and Demultiplexers",
+            "questions": [
+              "Explain the following:",
+              "a. Multiplexers",
+              "b. Demultiplexers",
+              "c. Truth tables",
+              "d. Logic circuits"
+            ]
+          }
+        ]
+    }
+    </script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const week = 'Week 3';
+        let currentQuestionIndex = 0;
+        let questions = [];
+
+        // Get JSON data from the script tag
+        const jsonData = JSON.parse(document.getElementById('json-data').textContent);
+
+        // Collect all the questions from all topics into a single array
+        const weekContent = jsonData.topics;
+        if (weekContent) {
+            weekContent.forEach(topic => {
+                topic.questions.forEach(question => {
+                    questions.push({
+                        topicTitle: topic.title,
+                        questionText: question
+                    });
+                });
+            });
+            displayQuestion();
+        } else {
+            document.getElementById('question').innerHTML = '<p>No content available for this week.</p>';
+        }
+
+        // Function to display a question
+        function displayQuestion() {
+            const questionDiv = document.getElementById('question');
+            if (questions.length > 0) {
+                const currentQuestion = questions[currentQuestionIndex];
+                questionDiv.innerHTML = `
+                    <h2>${currentQuestion.topicTitle}</h2>
+                    <p class="question"><strong>Q:</strong> ${currentQuestion.questionText}</p>
+                `;
+                updateButtons();
+            }
+        }
+
+        // Update button states based on the current question
+        function updateButtons() {
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+
+            // Hide "Previous" button if at the start
+            if (currentQuestionIndex === 0) {
+                prevBtn.classList.add('hidden');
+            } else {
+                prevBtn.classList.remove('hidden');
+            }
+
+            // Change "Next" button text if at the end
+            if (currentQuestionIndex === questions.length - 1) {
+                nextBtn.innerHTML = "Finish";
+            } else {
+                nextBtn.innerHTML = "Next";
+            }
+        }
+
+        // Event listeners for buttons
+        document.getElementById('next-btn').addEventListener('click', function() {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                displayQuestion();
+            }
+        });
+
+        document.getElementById('prev-btn').addEventListener('click', function() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                displayQuestion();
+            }
+        });
+    });
+    </script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body>
+</html>

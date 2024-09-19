@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Chewy&display=swap');
+
+body {
+    font-family: 'Chewy', cursive;
+    background: #fff; /* White background */
+    color: #000; /* Black text color */
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: #fff; /* White background */
+    color: #000; /* Black text color */
+    padding: 20px;
+    font-family: 'Chewy', cursive; /* Ensure font is applied */
+}
+
+main {
+    padding: 20px;
+}
+
+.week-selection {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid */
+    gap: 20px; /* Increase gap to prevent overlap */
+    justify-content: center;
+    max-width: 1000px; /* Adjust as needed for larger layout */
+    margin: 0 auto;
+    grid-template-rows: repeat(auto-fill, 120px); /* Ensure rows adjust automatically */
+}
+
+.week-card {
+    background: #fff; /* White background */
+    color: #000; /* Black text color */
+    border: 3px solid #000; /* Thick black border */
+    border-radius: 19px;
+    width: 200px; /* Wider width */
+    height: 130px; /* Longer height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    font-weight: 600;
+    text-decoration: none; /* Remove underline */
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    font-family: 'Chewy', cursive; /* Ensure font is applied */
+    margin-left: 50px;
+}
+
+.week-card:hover {
+    background: #f0f0f0; /* Light gray background on hover */
+    transform: scale(1.05);
+    animation: bounce 0.5s; /* Bounce effect on hover */
+}
+
+.week-card:active {
+    background: #e0e0e0; /* Even lighter gray background when active */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}

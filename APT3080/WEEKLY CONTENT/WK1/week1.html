@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 1 - APT3080 Management Information Systems</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&display=swap">
+    <style>
+        body {
+            font-family: 'Chewy', cursive;
+            background-color: #fff;
+            color: #000;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        header {
+            background-color: #fff;
+            color: #000;
+            padding: 10px;
+            margin-bottom: 0;
+            font-size: 1.3em;
+            box-sizing: border-box;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align items to the start to reduce space */
+            height: calc(100vh - 70px); /* Adjust height to fit better */
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .content-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 85%;
+            max-width: 900px;
+            height: auto; /* Allow height to adjust based on content */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: left;
+            box-sizing: border-box;
+            margin-top: 20px; /* Add margin to push up */
+        }
+
+        .content-card h2 {
+            font-size: 1.5em;
+            margin-top: 0;
+        }
+
+        .question {
+            font-size: 1.0em;
+            margin-bottom: 20px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between; /* Space buttons to the left and right */
+            gap: 10px;
+        }
+
+        .controls button {
+            font-family: 'Chewy', cursive;
+            font-size: 1.2em;
+            padding: 10px 20px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .controls button:hover {
+            background-color: #555;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 600px) {
+            header {
+                font-size: 1.5em;
+                padding: 8px;
+            }
+
+            main {
+                height: calc(100vh - 60px); /* Adjust height for mobile */
+            }
+
+            .content-card {
+                padding: 15px;
+                margin-top: 10px; /* Adjust margin for mobile */
+            }
+
+            .content-card h2 {
+                font-size: 1.2em;
+            }
+
+            .question {
+                font-size: 1.5em;
+            }
+
+            .controls button {
+                font-size: 1em;
+                padding: 6px 12px; /* Smaller padding for mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Week 1 - APT3080 Management Information Systems</h1>
+    </header>
+    <main>
+        <section class="content-card">
+            <div id="question-container">
+                <div id="question" class="question"></div>
+            </div>
+            <div class="controls">
+                <button id="prev-btn" class="hidden">Previous</button>
+                <button id="next-btn">Next</button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const week = 'Week 1';
+        let currentQuestionIndex = 0;
+        let questions = [
+            {
+                topicTitle: "Introduction to Management Information Systems",
+                questionText: "What is Management Information Systems?"
+            },
+            {
+                topicTitle: "Introduction to Management Information Systems",
+                questionText: "What are the key components and characteristics of a Management Information System?"
+            },
+            {
+                topicTitle: "Introduction to Management Information Systems",
+                questionText: "In detail, explain 8 of the components of a Management Information System."
+            },
+            {
+                topicTitle: "Emergence of Information Systems",
+                questionText: "Discuss advancements in technology (3)."
+            },
+            {
+                topicTitle: "Emergence of Information Systems",
+                questionText: "Describe organizational needs."
+            },
+            {
+                topicTitle: "Emergence of Information Systems",
+                questionText: "Discuss the rise of a data-driven culture."
+            },
+            {
+                topicTitle: "Emergence of Information Systems",
+                questionText: "Explain the economic and social changes."
+            },
+            {
+                topicTitle: "Emergence of Information Systems",
+                questionText: "Discuss the government and military influence."
+            },
+            {
+                topicTitle: "Emergence of Information Systems",
+                questionText: "Recall the evolution of software."
+            },
+            {
+                topicTitle: "Information Systems Overview",
+                questionText: "Define environment in terms of input, process, and output."
+            },
+            {
+                topicTitle: "Information Systems Overview",
+                questionText: "Look at the example of Choice Hotels Reservation System."
+            },
+            {
+                topicTitle: "Information Systems Overview",
+                questionText: "Define the external environment of an Information System."
+            },
+            {
+                topicTitle: "Information Systems Overview",
+                questionText: "Define technology."
+            },
+            {
+                topicTitle: "Information Systems Overview",
+                questionText: "What are the functional units of business organizations?"
+            },
+            {
+                topicTitle: "Information Systems Overview",
+                questionText: "Explain 4 functional areas of business."
+            },
+            {
+                topicTitle: "Computer Literacy vs IS Literacy",
+                questionText: "Differentiate computer vs IS literacy with a diagram."
+            },
+            {
+                topicTitle: "Business Process in IS",
+                questionText: "Show the order generation and fulfillment process."
+            },
+            {
+                topicTitle: "Organizational Problem Solving",
+                questionText: "Show the triangle of Organizational problem vs Organizational fulfillment."
+            },
+            {
+                topicTitle: "Role of IS in Business",
+                questionText: "What are the roles of IS in business?"
+            },
+            {
+                topicTitle: "Value Chain Analysis",
+                questionText: "What are the primary activities and support activities in the value chain?"
+            },
+            {
+                topicTitle: "Problem Solving Approach",
+                questionText: "Discuss the IS approach to problem solving."
+            },
+            {
+                topicTitle: "Systems Analysis and Design",
+                questionText: "Define Systems analysis and design."
+            },
+            {
+                topicTitle: "Technology Perspective",
+                questionText: "With the aid of a diagram, give the technology perspective to problem solving."
+            },
+            {
+                topicTitle: "Organizational Perspective",
+                questionText: "Discuss the Organizational perspective to problem solving."
+            },
+            {
+                topicTitle: "People Perspective",
+                questionText: "Discuss the People perspective to problem solving."
+            }
+        ];
+
+        // Function to display the current question
+        function displayQuestion() {
+            const questionDiv = document.getElementById('question');
+            if (questions.length > 0) {
+                const currentQuestion = questions[currentQuestionIndex];
+                questionDiv.innerHTML = `
+                    <h2>${currentQuestion.topicTitle}</h2>
+                    <p class="question"><strong>Q:</strong> ${currentQuestion.questionText}</p>
+                `;
+                updateButtons();
+            }
+        }
+
+        // Function to update the button states
+        function updateButtons() {
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+
+            prevBtn.classList.toggle('hidden', currentQuestionIndex === 0);
+            nextBtn.textContent = currentQuestionIndex === questions.length - 1 ? "Finish" : "Next";
+        }
+
+        // Event listeners for buttons
+        document.getElementById('next-btn').addEventListener('click', function() {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                displayQuestion();
+            }
+        });
+
+        document.getElementById('prev-btn').addEventListener('click', function() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                displayQuestion();
+            }
+        });
+
+        // Initialize with the first question
+        displayQuestion();
+    });
+    </script>
+</body>
+</html>

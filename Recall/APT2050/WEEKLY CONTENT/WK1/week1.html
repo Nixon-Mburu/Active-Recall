@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 1 - APT3010 Computer Networks</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&display=swap">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Chewy&display=swap');
+
+        body {
+    font-family: 'Chewy', cursive;
+    background-color: #fff;
+    color: #000;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: #fff;
+    color: #000;
+    padding: 10px;
+    margin-bottom: 0;
+    font-size: 1.5em;
+    box-sizing: border-box;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align items to the start to reduce space */
+    height: calc(100vh - 70px); /* Adjust height to fit better */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.content-card {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 600px; /* Reduced width for mobile */
+    text-align: left;
+    box-sizing: border-box;
+    margin-top: 20px; /* Add margin to push up */
+}
+
+.content-card h2 {
+    font-size: 1.2em;
+    margin-top: 0;
+}
+
+.question {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between; /* Space buttons to the left and right */
+    gap: 10px;
+}
+
+.controls button {
+    font-family: 'Chewy', cursive;
+    font-size: 1em;
+    padding: 8px 16px; /* Smaller padding */
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.controls button:hover {
+    background-color: #555;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Mobile Styles */
+@media (max-width: 600px) {
+    header {
+        font-size: 1.2em;
+        padding: 8px;
+    }
+
+    .content-card {
+        padding: 10px;
+        margin-top: 10px; /* Adjust margin for mobile */
+    }
+
+    .content-card h2 {
+        font-size: 1em;
+    }
+
+    .question {
+        font-size: 1em;
+    }
+
+    .controls button {
+        font-size: 0.9em;
+        padding: 6px 12px; /* Smaller padding for mobile */
+    }
+}
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Week 1 - APT2050 Computer Networks</h1>
+    </header>
+    <main>
+        <section class="content-card">
+            <div id="question-container">
+                <div id="question" class="question"></div>
+            </div>
+            <div class="controls">
+                <button id="prev-btn" class="hidden">Previous</button>
+                <button id="next-btn">Next</button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const week = 'Week 1';
+        let currentQuestionIndex = 0;
+        let questions = [
+            {
+                topicTitle: "Telecommunications",
+                questionText: "Define the following terms used in telecommunications: Communication, Telecommunication, Information, Data, Users, Protocols."
+            },
+            {
+                topicTitle: "Telecommunications",
+                questionText: "Define Wavelength & Time Based, Signals, Speed of light."
+            },
+            {
+                topicTitle: "Telecommunications",
+                questionText: "Look for five details about the Electromagnetic Spectrum in regard to frequency & wavelength."
+            },
+            {
+                topicTitle: "Network Key Terms",
+                questionText: "Define the following network key terms: Network, Traffic, Routes, Queues."
+            },
+            {
+                topicTitle: "Telephone Networks",
+                questionText: "Explain the Telephone Network (TN) and its hierarchy."
+            },
+            {
+                topicTitle: "Claude Shannon Theory",
+                questionText: "Explain Unit of Information and the Claude Shannon Theory."
+            },
+            {
+                topicTitle: "Taxonomy Levels",
+                questionText: "Define the 4 taxonomy levels: Services, Technologies, Switching technologies."
+            },
+            {
+                topicTitle: "Communications Model",
+                questionText: "What makes a communications model? Look at a simplified communications model diagram."
+            },
+            {
+                topicTitle: "Networks",
+                questionText: "Define Wide Area Networks (WANs), Packet Switching, Frame Relay, ATM, ISDN, LANs, Routers."
+            },
+            {
+                topicTitle: "Protocol Key Elements",
+                questionText: "What are the key elements of protocols?"
+            },
+            {
+                topicTitle: "Three-Layer Architecture",
+                questionText: "What defines a simplified 3-layer architecture? Explain using a diagram."
+            },
+            {
+                topicTitle: "TCP/IP",
+                questionText: "Explain TCP/IP, its layers: Physical layer, Network Access layer, IP layer, TCP layer, Application layer."
+            },
+            {
+                topicTitle: "OSI Model",
+                questionText: "Define the 6 layers of OSI: Application, Session, Transport, Presentation, Data Link, Physical."
+            },
+            {
+                topicTitle: "Standards",
+                questionText: "Define standards and give advantages/disadvantages."
+            }
+        ];
+
+        // Function to display the current question
+        function displayQuestion() {
+            const questionDiv = document.getElementById('question');
+            if (questions.length > 0) {
+                const currentQuestion = questions[currentQuestionIndex];
+                questionDiv.innerHTML = `
+                    <h2>${currentQuestion.topicTitle}</h2>
+                    <p class="question"><strong>Q:</strong> ${currentQuestion.questionText}</p>
+                `;
+                updateButtons();
+            }
+        }
+
+        // Function to update the button states
+        function updateButtons() {
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+
+            prevBtn.style.display = currentQuestionIndex === 0 ? 'none' : 'inline-block';
+            nextBtn.style.display = currentQuestionIndex === questions.length - 1 ? 'none' : 'inline-block';
+        }
+
+        // Event listener for the 'Next' button
+        document.getElementById('next-btn').addEventListener('click', function() {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                displayQuestion();
+            }
+        });
+
+        // Event listener for the 'Previous' button
+        document.getElementById('prev-btn').addEventListener('click', function() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                displayQuestion();
+            }
+        });
+
+        // Initial question display
+        displayQuestion();
+    });
+    </script>
+</body>
+</html>

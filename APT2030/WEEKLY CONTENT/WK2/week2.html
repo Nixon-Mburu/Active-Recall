@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 2 - APT2030 Digital Electronics</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&display=swap">
+    <style>
+        body {
+            font-family: 'Chewy', cursive;
+            background-color: #fff;
+            color: #000;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        header {
+            background-color: #fff;
+            color: #000;
+            padding: 10px;
+            margin-bottom: 0;
+            font-size: 1.3em;
+            box-sizing: border-box;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align items to the start to reduce space */
+            height: calc(100vh - 70px); /* Adjust height to fit better */
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .content-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 85%;
+            max-width: 900px;
+            height: auto; /* Allow height to adjust based on content */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: left;
+            box-sizing: border-box;
+            margin-top: 20px; /* Add margin to push up */
+        }
+
+        .content-card h2 {
+            font-size: 1.5em;
+            margin-top: 0;
+        }
+
+        .question {
+            font-size: 1.0em;
+            margin-bottom: 20px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between; /* Space buttons to the left and right */
+            gap: 10px;
+        }
+
+        .controls button {
+            font-family: 'Chewy', cursive;
+            font-size: 1.2em;
+            padding: 10px 20px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .controls button:hover {
+            background-color: #555;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 600px) {
+            header {
+                font-size: 1.0em;
+                padding: 8px;
+            }
+
+            main {
+                height: calc(100vh - 60px); /* Adjust height for mobile */
+            }
+
+            .content-card {
+                padding: 15px;
+                margin-top: 10px; /* Adjust margin for mobile */
+            }
+
+            .content-card h2 {
+                font-size: 1.2em;
+            }
+
+            .question {
+                font-size: 1.4em;
+            }
+
+            .controls button {
+                font-size: 1em;
+                padding: 6px 12px; /* Smaller padding for mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Week 2 - APT2030 Digital Electronics</h1>
+    </header>
+    <main>
+        <section class="content-card">
+            <div id="question-container">
+                <div id="question" class="question"></div>
+            </div>
+            <div class="controls">
+                <button id="prev-btn" class="hidden">Previous</button>
+                <button id="next-btn">Next</button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const week = 'Week 2';
+        let currentQuestionIndex = 0;
+        let questions = [];
+
+        fetch('apt2030_wk2.json') 
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok: ' + response.statusText);
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Ensure data has the expected structure
+            if (data && data.topics) {
+                // Collect all the questions from all topics into a single array
+                data.topics.forEach(topic => {
+                    topic.questions.forEach(question => {
+                        questions.push({
+                            topicTitle: topic.title,
+                            questionText: question
+                        });
+                    });
+                });
+                displayQuestion();
+            } else {
+                document.getElementById('question').innerHTML = '<p>No content available for this week.</p>';
+            }
+        })
+        .catch(error => {
+            console.error('Error loading content:', error);
+            document.getElementById('question').innerHTML = '<p>Error loading content.</p>';
+        });
+
+        // Function to display a question
+        function displayQuestion() {
+            const questionDiv = document.getElementById('question');
+            if (questions.length > 0) {
+                const currentQuestion = questions[currentQuestionIndex];
+                questionDiv.innerHTML = `
+                    <h2>${currentQuestion.topicTitle}</h2>
+                    <p class="question"><strong>Q:</strong> ${currentQuestion.questionText}</p>
+                `;
+                updateButtons();
+            }
+        }
+
+        // Update button states based on the current question
+        function updateButtons() {
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+
+            // Hide "Previous" button if at the start
+            if (currentQuestionIndex === 0) {
+                prevBtn.classList.add('hidden');
+            } else {
+                prevBtn.classList.remove('hidden');
+            }
+
+            // Hide "Next" button if at the end
+            if (currentQuestionIndex === questions.length - 1) {
+                nextBtn.innerHTML = "Finish";  // Change button text if it's the last question
+            } else {
+                nextBtn.innerHTML = "Next";
+            }
+        }
+
+        // Event listeners for buttons
+        document.getElementById('next-btn').addEventListener('click', function() {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                displayQuestion();
+            }
+        });
+
+        document.getElementById('prev-btn').addEventListener('click', function() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                displayQuestion();
+            }
+        });
+    });
+    </script>
+</body>
+</html>

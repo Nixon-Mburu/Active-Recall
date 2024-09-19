@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 2 - APT3010 Computer Networks</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&display=swap">
+    <style>
+        body {
+    font-family: 'Chewy', cursive;
+    background-color: #fff;
+    color: #000;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: #fff;
+    color: #000;
+    padding: 10px;
+    margin-bottom: 0;
+    font-size: 1.5em;
+    box-sizing: border-box;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align items to the start to reduce space */
+    height: calc(100vh - 70px); /* Adjust height to fit better */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.content-card {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 600px; /* Reduced width for mobile */
+    text-align: left;
+    box-sizing: border-box;
+    margin-top: 20px; /* Add margin to push up */
+}
+
+.content-card h2 {
+    font-size: 1.2em;
+    margin-top: 0;
+}
+
+.question {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between; /* Space buttons to the left and right */
+    gap: 10px;
+}
+
+.controls button {
+    font-family: 'Chewy', cursive;
+    font-size: 1em;
+    padding: 8px 16px; /* Smaller padding */
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.controls button:hover {
+    background-color: #555;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Mobile Styles */
+@media (max-width: 600px) {
+    header {
+        font-size: 1.2em;
+        padding: 8px;
+    }
+
+    .content-card {
+        padding: 10px;
+        margin-top: 10px; /* Adjust margin for mobile */
+    }
+
+    .content-card h2 {
+        font-size: 1em;
+    }
+
+    .question {
+        font-size: 1em;
+    }
+
+    .controls button {
+        font-size: 0.9em;
+        padding: 6px 12px; /* Smaller padding for mobile */
+    }
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Week 2 - APT2050 Computer Networks</h1>
+    </header>
+    <main>
+        <section class="content-card">
+            <div id="question-container">
+                <div id="question" class="question"></div>
+            </div>
+            <div class="controls">
+                <button id="prev-btn" class="hidden">Previous</button>
+                <button id="next-btn">Next</button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const week = 'Week 2';
+        let currentQuestionIndex = 0;
+        let questions = [
+            {
+                topicTitle: "Characteristics of Protocols and Architecture",
+                questionText: "Give 4 characteristics of protocols and Architecture."
+            },
+            {
+                topicTitle: "Protocol Types",
+                questionText: "Explain Direct or Indirect protocols."
+            },
+            {
+                topicTitle: "Protocol Types",
+                questionText: "Explain Monolithic or Structured protocols."
+            },
+            {
+                topicTitle: "Protocol Types",
+                questionText: "Explain Symmetric or Asymmetric protocols."
+            },
+            {
+                topicTitle: "Protocol Types",
+                questionText: "Explain Standard or Non-standard protocols."
+            },
+            {
+                topicTitle: "Standard Protocols",
+                questionText: "What are the uses of standard protocols?"
+            },
+            {
+                topicTitle: "Standard Protocols",
+                questionText: "Give functions of standard protocols."
+            },
+            {
+                topicTitle: "Encapsulation",
+                questionText: "What is encapsulation?"
+            },
+            {
+                topicTitle: "Encapsulation",
+                questionText: "Use a diagram to define encapsulation."
+            },
+            {
+                topicTitle: "Segmentation/Fragmentation",
+                questionText: "Define segmentation/fragmentation."
+            },
+            {
+                topicTitle: "Segmentation/Fragmentation",
+                questionText: "Why do we fragment?"
+            },
+            {
+                topicTitle: "Segmentation/Fragmentation",
+                questionText: "What are the advantages of fragmentation?"
+            },
+            {
+                topicTitle: "Segmentation/Fragmentation",
+                questionText: "What are the disadvantages of fragmentation?"
+            },
+            {
+                topicTitle: "Connection Control",
+                questionText: "Define connection control."
+            },
+            {
+                topicTitle: "Connection Control",
+                questionText: "What are sequence numbers used for?"
+            },
+            {
+                topicTitle: "Connection Control",
+                questionText: "With the aid of a diagram, define connection-oriented Data Transfer."
+            },
+            {
+                topicTitle: "Connection Control",
+                questionText: "What is ordered delivery?"
+            },
+            {
+                topicTitle: "Flow and Error Control",
+                questionText: "Define flow control."
+            },
+            {
+                topicTitle: "Flow and Error Control",
+                questionText: "Define error control."
+            },
+            {
+                topicTitle: "Flow and Error Control",
+                questionText: "Discuss error detection in relation to error control."
+            },
+            {
+                topicTitle: "Addressing",
+                questionText: "Discuss addressing in the 4 premises."
+            },
+            {
+                topicTitle: "Addressing",
+                questionText: "Analyze different addressing levels."
+            },
+            {
+                topicTitle: "Addressing",
+                questionText: "With a diagram, discuss address concepts."
+            },
+            {
+                topicTitle: "Addressing",
+                questionText: "Define addressing scope."
+            },
+            {
+                topicTitle: "Addressing",
+                questionText: "Discuss global non-ambiguity in addressing."
+            },
+            {
+                topicTitle: "Addressing",
+                questionText: "Discuss global applicability in addressing."
+            },
+            {
+                topicTitle: "Connection Identifiers",
+                questionText: "What are connection identifiers?"
+            },
+            {
+                topicTitle: "Connection Identifiers",
+                questionText: "What are addressing modes in relation to networks?"
+            },
+            {
+                topicTitle: "Address Types",
+                questionText: "Recall Unicast address."
+            },
+            {
+                topicTitle: "Address Types",
+                questionText: "Recall Broadcast address."
+            },
+            {
+                topicTitle: "Address Types",
+                questionText: "Recall Multicast address."
+            },
+            {
+                topicTitle: "Multiplexing and Transmission Services",
+                questionText: "Discuss multiplexing."
+            },
+            {
+                topicTitle: "Multiplexing and Transmission Services",
+                questionText: "What are transmission services?"
+            },
+            {
+                topicTitle: "OSI Model",
+                questionText: "Describe the OSI model."
+            },
+            {
+                topicTitle: "OSI Model",
+                questionText: "With an aid of a diagram, define the OSI environment."
+            },
+            {
+                topicTitle: "OSI Model",
+                questionText: "Recall OSI as a framework for standardization."
+            },
+            {
+                topicTitle: "OSI Model",
+                questionText: "With the aid of a diagram, explain layer-specific standards."
+            },
+            {
+                topicTitle: "OSI Model",
+                questionText: "What are the elements of standardization?"
+            },
+            {
+                topicTitle: "OSI Model",
+                questionText: "Discuss the physical layer of OSI."
+            },
+            {
+                topicTitle: "OSI Model",
+                questionText: "Discuss the data link layer of OSI."
+            },
+            {
+                topicTitle: "OSI Model",
+                questionText: "Discuss the session layer of OSI."
+            },
+            {
+                topicTitle: "OSI Model",
+                questionText: "Discuss the presentation layer of OSI."
+            },
+            {
+                topicTitle: "OSI Model",
+                questionText: "Discuss the application layer of OSI."
+            },
+            {
+                topicTitle: "Relay Use",
+                questionText: "Via a diagram, discuss the use of a relay."
+            },
+            {
+                topicTitle: "TCP/IP Protocol Suite",
+                questionText: "Describe the TCP/IP protocol suite."
+            },
+            {
+                topicTitle: "TCP/IP Protocol Suite",
+                questionText: "Describe in great detail the TCP/IP protocol architecture."
+            },
+            {
+                topicTitle: "TCP/IP Protocol Suite",
+                questionText: "Discuss PDUs in TCP/IP."
+            },
+            {
+                topicTitle: "TCP/IP Protocol Suite",
+                questionText: "What is a User Datagram Protocol?"
+            },
+            {
+                topicTitle: "IPv4 Header",
+                questionText: "Use a diagram to recall the IPv4 header."
+            },
+            {
+                topicTitle: "Protocols in TCP/IP Suite",
+                questionText: "Give 7 examples of protocols in the TCP/IP suite."
+            }
+        ];
+
+        // Function to display the current question
+        function displayQuestion() {
+            const questionDiv = document.getElementById('question');
+            if (questions.length > 0) {
+                const currentQuestion = questions[currentQuestionIndex];
+                questionDiv.innerHTML = `
+                    <h2>${currentQuestion.topicTitle}</h2>
+                    <p class="question"><strong>Q:</strong> ${currentQuestion.questionText}</p>
+                `;
+                document.getElementById('prev-btn').classList.toggle('hidden', currentQuestionIndex === 0);
+                document.getElementById('next-btn').textContent = currentQuestionIndex === questions.length - 1 ? 'Finish' : 'Next';
+            }
+        }
+
+        // Event listeners for buttons
+        document.getElementById('prev-btn').addEventListener('click', function() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                displayQuestion();
+            }
+        });
+
+        document.getElementById('next-btn').addEventListener('click', function() {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                displayQuestion();
+            } else {
+                alert('You have completed all questions.');
+            }
+        });
+
+        // Initial display
+        displayQuestion();
+    });
+    </script>
+</body>
+</html>

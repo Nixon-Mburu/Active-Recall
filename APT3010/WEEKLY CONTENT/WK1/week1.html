@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 1 - APT3010 Introduction to AI</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&display=swap">
+    <style>
+        body {
+            font-family: 'Chewy', cursive;
+            background-color: #fff;
+            color: #000;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        header {
+            background-color: #fff;
+            color: #000;
+            padding: 10px;
+            margin-bottom: 0;
+            font-size: 2em;
+            box-sizing: border-box;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align items to the start to reduce space */
+            height: calc(100vh - 70px); /* Adjust height to fit better */
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .content-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 85%;
+            max-width: 900px;
+            height: auto; /* Allow height to adjust based on content */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: left;
+            box-sizing: border-box;
+            margin-top: 20px; /* Add margin to push up */
+        }
+
+        .content-card h2 {
+            font-size: 1.5em;
+            margin-top: 0;
+        }
+
+        .question {
+            font-size: 1.3em;
+            margin-bottom: 20px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between; /* Space buttons to the left and right */
+            gap: 10px;
+        }
+
+        .controls button {
+            font-family: 'Chewy', cursive;
+            font-size: 1.2em;
+            padding: 8px 16px; /* Adjust padding */
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .controls button:hover {
+            background-color: #555;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 600px) {
+            header {
+                font-size: 1.5em;
+                padding: 8px;
+            }
+
+            main {
+                height: calc(100vh - 60px); /* Adjust height for mobile */
+            }
+
+            .content-card {
+                padding: 15px;
+                margin-top: 10px; /* Adjust margin for mobile */
+            }
+
+            .content-card h2 {
+                font-size: 1.2em;
+            }
+
+            .question {
+                font-size: 1.5em;
+            }
+
+            .controls button {
+                font-size: 1em;
+                padding: 6px 12px; /* Smaller padding for mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Week 1 - APT3010 Introduction to AI</h1>
+    </header>
+    <main>
+        <section class="content-card">
+            <div id="question-container">
+                <div id="question" class="question"></div>
+            </div>
+            <div class="controls">
+                <button id="prev-btn" class="hidden">Previous</button>
+                <button id="next-btn">Next</button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const week = 'Week 1';
+        let currentQuestionIndex = 0;
+        let questions = [
+            {
+                topicTitle: "Intelligence",
+                questionText: "Look at Expected Learning Outcomes."
+            },
+            {
+                topicTitle: "Intelligence",
+                questionText: "What is Intelligence? Define."
+            },
+            {
+                topicTitle: "Intelligence",
+                questionText: "Define Intelligence in two ways in the following points of view: a) Psychological view, b) AI/CS point of view."
+            },
+            {
+                topicTitle: "Intelligence",
+                questionText: "Explain Intelligence using a diagram."
+            },
+            {
+                topicTitle: "Intelligence",
+                questionText: "Name 8 types of intelligence (Multiple Intelligences)."
+            },
+            {
+                topicTitle: "Intelligence",
+                questionText: "Describe 8 types of intelligence and for each, give a valid example."
+            },
+            {
+                topicTitle: "AI, ML, and DL",
+                questionText: "Use a diagram to show the relationship of AI, ML, and DL."
+            },
+            {
+                topicTitle: "AI, ML, and DL",
+                questionText: "Define the following: AI, ML, DL."
+            },
+            {
+                topicTitle: "AI, ML, and DL",
+                questionText: "What is Artificial Intelligence?"
+            },
+            {
+                topicTitle: "AI, ML, and DL",
+                questionText: "AI as a factor of production."
+            },
+            {
+                topicTitle: "AI, ML, and DL",
+                questionText: "What is AI?"
+            },
+            {
+                topicTitle: "AI, ML, and DL",
+                questionText: "Give all the different areas of AI research."
+            },
+            {
+                topicTitle: "AI, ML, and DL",
+                questionText: "Use the Oxford Dictionary to describe AI."
+            },
+            {
+                topicTitle: "AI Myths and Subfields",
+                questionText: "Name 9 AI myths and explain each of them."
+            },
+            {
+                topicTitle: "AI Myths and Subfields",
+                questionText: "Name the different categories, types, and subfields of AI (based on Russell et al. 2022)."
+            },
+            {
+                topicTitle: "AI History",
+                questionText: "Describe the timeline of AI history from 1950 to 2018 (in detail)."
+            },
+            {
+                topicTitle: "AI Applications and Goals",
+                questionText: "Applications of AI in line with the SDG Goals."
+            },
+            {
+                topicTitle: "AI Applications and Goals",
+                questionText: "Give 6 different possible applications of AI."
+            },
+            {
+                topicTitle: "AI Applications and Goals",
+                questionText: "Go over applications of AI in: a) Health, b) Education, c) Security, d) Agriculture, e) Marketing, f) Finance, g) Entertainment."
+            },
+            {
+                topicTitle: "AI Building Blocks",
+                questionText: "What are the building blocks of AI? Use a diagram."
+            },
+            {
+                topicTitle: "Data Science and AI Types",
+                questionText: "Define Data Science in terms of ML and Data Mining (use diagram)."
+            },
+            {
+                topicTitle: "Data Science and AI Types",
+                questionText: "Name all types of AI, use diagram."
+            },
+            {
+                topicTitle: "Business Value with AI",
+                questionText: "Explain how to deliver business value with AI."
+            }
+        ];
+
+        // Function to display the current question
+        function displayQuestion() {
+            const questionDiv = document.getElementById('question');
+            if (questions.length > 0) {
+                const currentQuestion = questions[currentQuestionIndex];
+                questionDiv.innerHTML = `
+                    <h2>${currentQuestion.topicTitle}</h2>
+                    <p class="question"><strong>Q:</strong> ${currentQuestion.questionText}</p>
+                `;
+                updateButtons();
+            }
+        }
+
+        // Function to update the button states
+        function updateButtons() {
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+
+            prevBtn.classList.toggle('hidden', currentQuestionIndex === 0);
+            nextBtn.textContent = currentQuestionIndex === questions.length - 1 ? "Finish" : "Next";
+        }
+
+        // Event listeners for buttons
+        document.getElementById('next-btn').addEventListener('click', function() {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                displayQuestion();
+            }
+        });
+
+        document.getElementById('prev-btn').addEventListener('click', function() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                displayQuestion();
+            }
+        });
+
+        // Initialize with the first question
+        displayQuestion();
+    });
+    </script>
+</body>
+</html>

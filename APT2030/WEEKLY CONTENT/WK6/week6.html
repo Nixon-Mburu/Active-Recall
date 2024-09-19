@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 6 - APT2030 Digital Electronics</title>
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&display=swap">
+    <style>
+        body {
+            font-family: 'Chewy', cursive;
+            background: #fff;
+            color: #000;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        header {
+            background: #fff;
+            color: #000;
+            padding: 10px;
+            font-family: 'Chewy', cursive;
+            margin-bottom: 0;
+            box-sizing: border-box;
+            font-size: 2.0 em;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .content-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            width: 85%;
+            max-width: 900px;
+            height: 80%; /* Ensure it fits without scrolling */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: left;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .content-card h2 {
+            font-size: 1.0em;
+            margin-top: 0;
+        }
+
+        .content-card .question {
+            font-size: 2em; /* Larger font for the question text */
+            margin-bottom: 20px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .controls button {
+            font-family: 'Chewy', cursive;
+            font-size: 1.2em;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 12px; /* Rounded borders */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .controls button:hover {
+            background-color: #555; /* Darker shade of black on hover */
+        }
+
+        /* Hide the button if not needed */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Week 6 - APT2030 Digital Electronics</h1>
+    </header>
+    <main>
+        <section class="content-card">
+            <div id="question-container">
+                <div id="question" class="question"></div>
+            </div>
+            <div class="controls">
+                <button id="prev-btn" class="hidden">Previous</button>
+                <button id="next-btn">Next</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- JSON Data -->
+    <script id="json-data" type="application/json">
+    {
+        "Week5": {
+            "Topic": "Advanced Logic Circuits",
+            "Content": [
+              {
+                "title": "Example Block Diagram and Truth Table",
+                "questions": [
+                  "Describe a simple example block diagram and truth table:",
+                  "a. Block diagram",
+                  "b. Truth table"
+                ]
+              },
+              {
+                "title": "Equivalent NAND Gate Symbols",
+                "questions": [
+                  "Look at Equivalent NAND gate symbols."
+                ]
+              },
+              {
+                "title": "Implementations of Logic Circuits",
+                "questions": [
+                  "Discuss Implementations of:",
+                  "a. AND–OR circuit",
+                  "b. NAND circuit",
+                  "c. Alternate NAND circuit"
+                ]
+              },
+              {
+                "title": "Handling Single-literal Product Terms",
+                "questions": [
+                  "Handling single-literal product terms:",
+                  "a. AND–OR",
+                  "b. NAND–NAND"
+                ]
+              },
+              {
+                "title": "Implementations of OR-AND and NOR Circuits",
+                "questions": [
+                  "Explain Implementations of:",
+                  "a. OR–AND circuit",
+                  "b. NOR circuit",
+                  "c. Alternate NOR circuit"
+                ]
+              },
+              {
+                "title": "Equivalent NOR Gate Symbols",
+                "questions": [
+                  "What are the Equivalent NOR gate symbols?"
+                ]
+              },
+              {
+                "title": "Handling Single-literal Sum Terms",
+                "questions": [
+                  "Explain Handling single-literal sum terms:",
+                  "a. OR–AND",
+                  "b. NOR–NOR"
+                ]
+              },
+              {
+                "title": "Two-Level Circuit Structures",
+                "questions": [
+                  "Discuss Two-level circuit structures:",
+                  "a. Two-level circuit",
+                  "b. Three-level circuit with inverters"
+                ]
+              },
+              {
+                "title": "Multilevel Circuits and Fan-in Restrictions",
+                "questions": [
+                  "Recall Multilevel circuit made necessary by fan-in restrictions:",
+                  "a. A single five-input AND gate",
+                  "b. Three-level circuit of two-input gates",
+                  "c. Four-level circuit of two-input gates"
+                ]
+              },
+              {
+                "title": "Factor and Realization of Different Logic Gates",
+                "questions": [
+                  "Factor and realization of different logic gates."
+                ]
+              },
+              {
+                "title": "Even Parity Code Circuits",
+                "questions": [
+                  "Look at Even parity code circuits:",
+                  "a. Parity code format",
+                  "b. Even-parity bit generation circuit",
+                  "c. Even-parity bit check circuit"
+                ]
+              },
+              {
+                "title": "Programmable NOT Gate",
+                "questions": [
+                  "Explain Programmable NOT gate:",
+                  "a. With reference to g and x"
+                ]
+              },
+              {
+                "title": "Equivalent Switching Networks",
+                "questions": [
+                  "Look at Equivalent switching networks."
+                ]
+              },
+              {
+                "title": "Design Verification Example",
+                "questions": [
+                  "With a diagram, look at an example of design verification."
+                ]
+              },
+              {
+                "title": "Derivation of Truth Table from Timing Diagram",
+                "questions": [
+                  "Derive a truth table from a timing diagram:",
+                  "a. Logic circuit realizing two functions",
+                  "b. Timing diagram",
+                  "c. Truth table"
+                ]
+              },
+              {
+                "title": "Propagation Delay through a Logic Gate",
+                "questions": [
+                  "Discuss Propagation delay through a logic gate:",
+                  "a. Two-input AND gate",
+                  "b. Ideal (zero)"
+                ]
+              },
+              {
+                "title": "Characteristics of Digital Electronic Technologies",
+                "questions": [
+                  "What are some Characteristics of digital electronic technologies?"
+                ]
+              },
+              {
+                "title": "Decoder Structures",
+                "questions": [
+                  "Look at n - 2^n decoder structures.",
+                  "2-to-4 decoder with enable input E:",
+                  "a. Schematic diagram",
+                  "b. I/O diagram"
+                ]
+              },
+              {
+                "title": "Use of 2-to-4 Decoder Modules",
+                "questions": [
+                  "What are the Uses of 2-to-4 decoder modules to realize larger decoders:",
+                  "a. 3-to-8 decoder",
+                  "b. 4-to-16 decoder"
+                ]
+              },
+              {
+                "title": "4-to-16 Decoder Module",
+                "questions": [
+                  "Describe a 4-to-16 decoder module:",
+                  "a. Logic circuit",
+                  "b. Function table",
+                  "c. Logic symbol"
+                ]
+              },
+              {
+                "title": "BCD to Decimal Code K-Maps",
+                "questions": [
+                  "K-maps for outputs 0, 5, and 9 of a BCD to decimal code:",
+                  "a. Decimal",
+                  "b. Decimal",
+                  "c. Decimal"
+                ]
+              },
+              {
+                "title": "4-to-2 Line Priority Encoder",
+                "questions": [
+                  "Describe a 4-to-2 line Priority Encoder:",
+                  "a. Functional diagram",
+                  "b. Truth table",
+                  "c. K-maps",
+                  "d. Logic diagram"
+                ]
+              },
+              {
+                "title": "8-bit to 3-bit Priority Encoder",
+                "questions": [
+                  "Look at an 8-bit to 3-bit priority encoder:",
+                  "a. Generic symbol",
+                  "b. Truth table",
+                  "c. Logic circuit"
+                ]
+              },
+              {
+                "title": "Example Uses for Encoders",
+                "questions": [
+                  "What are some example uses for Encoders?"
+                ]
+              },
+              {
+                "title": "K-channel Multiplexing/Demultiplexing System",
+                "questions": [
+                  "Discuss K-channel multiplexing/demultiplexing system:",
+                  "a. Multiplex/demultiplex operation",
+                  "b. Simple logic configuration for (a)"
+                ]
+              },
+              {
+                "title": "Multiplexers and Demultiplexers",
+                "questions": [
+                  "Look at multiplexers and demultiplexers with k inputs."
+                ]
+              },
+              {
+                "title": "Simplified Design of Switch and Control Logic",
+                "questions": [
+                  "Simplified design of switch and control logic.",
+                  "a. Logic circuit",
+                  "b. Logic symbol",
+                  "c. Function table"
+                ]
+              },
+              {
+                "title": "Design of K-to-M Decoder",
+                "questions": [
+                  "Design of K-to-M decoder with enable input."
+                ]
+              }
+            ]
+        }
+    }
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const jsonData = document.getElementById('json-data').textContent;
+            const data = JSON.parse(jsonData);
+            const topics = data.Week5.Content;
+            let currentIndex = 0;
+
+            const questionElement = document.getElementById('question');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+
+            function displayQuestion(index) {
+                if (index >= 0 && index < topics.length) {
+                    const topic = topics[index];
+                    const questionText = topic.questions.map((q, i) => `${i + 1}. ${q}`).join('<br>');
+                    questionElement.innerHTML = `<strong>${topic.title}</strong><br><br>${questionText}`;
+                }
+            }
+
+            function updateButtons() {
+                prevBtn.classList.toggle('hidden', currentIndex === 0);
+                nextBtn.classList.toggle('hidden', currentIndex === topics.length - 1);
+            }
+
+            prevBtn.addEventListener('click', function() {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    displayQuestion(currentIndex);
+                    updateButtons();
+                }
+            });
+
+            nextBtn.addEventListener('click', function() {
+                if (currentIndex < topics.length - 1) {
+                    currentIndex++;
+                    displayQuestion(currentIndex);
+                    updateButtons();
+                }
+            });
+
+            displayQuestion(currentIndex);
+            updateButtons();
+        });
+    </script>
+</body>
+</html>

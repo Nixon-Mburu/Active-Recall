@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 3 - APT3010 Introduction to AI</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&display=swap">
+    <style>
+        body {
+            font-family: 'Chewy', cursive;
+            background-color: #fff;
+            color: #000;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        header {
+            background-color: #fff;
+            color: #000;
+            padding: 10px;
+            margin-bottom: 0;
+            font-size: 2em;
+            box-sizing: border-box;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align items to the start to reduce space */
+            height: calc(100vh - 70px); /* Adjust height to fit better */
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .content-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 85%;
+            max-width: 900px;
+            height: auto; /* Allow height to adjust based on content */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: left;
+            box-sizing: border-box;
+            margin-top: 20px; /* Add margin to push up */
+        }
+
+        .content-card h2 {
+            font-size: 1.5em;
+            margin-top: 0;
+        }
+
+        .question {
+            font-size: 1.3em;
+            margin-bottom: 20px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between; /* Space buttons to the left and right */
+            gap: 10px;
+        }
+
+        .controls button {
+            font-family: 'Chewy', cursive;
+            font-size: 1.2em;
+            padding: 8px 16px; /* Adjust padding */
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .controls button:hover {
+            background-color: #555;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 600px) {
+            header {
+                font-size: 1.5em;
+                padding: 8px;
+            }
+
+            main {
+                height: calc(100vh - 60px); /* Adjust height for mobile */
+            }
+
+            .content-card {
+                padding: 15px;
+                margin-top: 10px; /* Adjust margin for mobile */
+            }
+
+            .content-card h2 {
+                font-size: 1.2em;
+            }
+
+            .question {
+                font-size: 1.5em;
+            }
+
+            .controls button {
+                font-size: 1em;
+                padding: 6px 12px; /* Smaller padding for mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Week 3 - APT3010 Introduction to AI</h1>
+    </header>
+    <main>
+        <section class="content-card">
+            <div id="question-container">
+                <div id="question" class="question"></div>
+            </div>
+            <div class="controls">
+                <button id="prev-btn" class="hidden">Previous</button>
+                <button id="next-btn">Next</button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // JSON content as provided
+        const questions = [
+            {
+                "title": "Topic",
+                "content": "Problem solving searching"
+            },
+            {
+                "title": "What is searching?",
+                "content": ""
+            },
+            {
+                "title": "What are search algorithms?",
+                "content": ""
+            },
+            {
+                "title": "What is a Search Problem in AI?",
+                "content": ""
+            },
+            {
+                "title": "Define Search?",
+                "content": ""
+            },
+            {
+                "title": "How search works?",
+                "content": ""
+            },
+            {
+                "title": "Components of a Search Problem",
+                "content": "What are the 6 components of a search problem?"
+            },
+            {
+                "title": "Detail the 6 Components",
+                "content": "In detail describe the 6 components: State space, Initial state, Goal state, Operators/actions, Transition model, Path cost"
+            },
+            {
+                "title": "Searching Process",
+                "content": "Discuss the searching process"
+            },
+            {
+                "title": "Search Algorithm",
+                "content": "Describe the search algorithm and in relation to Uniformed/blind and Informed Search"
+            },
+            {
+                "title": "Lawn Mower Problem",
+                "content": "Look at the lawn mower problem"
+            },
+            {
+                "title": "Premises of the Lawn Mower Problem",
+                "content": "Define all the premises of the lawn mower problem"
+            },
+            {
+                "title": "Discussion on Lawn Mower Problem",
+                "content": "Discuss the: Problem definition, search space, state space, Operators/actions, solution, search algorithms, heuristics, optimization, dynamic environment, learning"
+            },
+            {
+                "title": "Problem Solving Agents",
+                "content": "What are Problem solving agents?"
+            },
+            {
+                "title": "Goal-Based Agents",
+                "content": "Define goal based agents using a diagram?"
+            },
+            {
+                "title": "Goal-Based Agents in Code",
+                "content": "Have goal based agents in code"
+            },
+            {
+                "title": "Water Pouring Example",
+                "content": "Discuss the example of Water Pouring"
+            },
+            {
+                "title": "Diagrams for Water Pouring",
+                "content": "Draw and understand the relevant diagrams in relation to water Pouring"
+            },
+            {
+                "title": "Toy Examples",
+                "content": "Look at the Toy Examples: Jug fill, Black White marbles, Row boat problem, sliding blocks, Triangle tree"
+            },
+            {
+                "title": "Map Planning",
+                "content": "Look at Map planning"
+            },
+            {
+                "title": "Searching for Solutions",
+                "content": "Searching for solutions, state and nodes"
+            },
+            {
+                "title": "State and Nodes",
+                "content": "Define state and nodes"
+            },
+            {
+                "title": "TREE-SEARCH Problem",
+                "content": "Understand and recall in depth the TREE-SEARCH problem"
+            },
+            {
+                "title": "Uniformed Search Strategies",
+                "content": "What are Uniformed Search strategies?"
+            },
+            {
+                "title": "Uniform Search Strategies",
+                "content": "Describe the 5 uniform search strategies: Breadth-first search, Uniform-cost search, Depth-first search, Depth-limited search, Iterative deepening search"
+            },
+            {
+                "title": "Comparison of Uniform Search Strategies",
+                "content": "Compare the Uniform search strategies"
+            },
+            {
+                "title": "Uniform Search Strategy Diagrams",
+                "content": "With diagrams in your notes, describe each uniform search strategy"
+            },
+            {
+                "title": "Properties and Lessons",
+                "content": "What are their properties and lessons?"
+            },
+            {
+                "title": "Diagrams Relevance",
+                "content": "You have several diagrams, in relation to the search strategies, describe them one-by-one"
+            },
+            {
+                "title": "Relevance of Diagrams",
+                "content": "How are the diagrams relevant?"
+            },
+            {
+                "title": "Depth-Limited Search",
+                "content": "In depth limited search, look at recursive implementation"
+            },
+            {
+                "title": "Iterative Deepening Search",
+                "content": "Describe iterative deepening search"
+            },
+            {
+                "title": "Iterative Deepening Search Diagrams",
+                "content": "Look and understand all the diagrams in iterative deepening search"
+            },
+            {
+                "title": "Lessons from Iterative Deepening Search",
+                "content": "What are the lessons from iterative deepening search"
+            },
+            {
+                "title": "Avoiding Repeated States",
+                "content": "Discuss avoiding repeated states"
+            },
+            {
+                "title": "GRAPH-SEARCH Function",
+                "content": "Understand and rewrite the function GRAPH-SEARCH in avoiding repeated states"
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+
+        function displayQuestion() {
+            const questionDiv = document.getElementById('question');
+            const currentQuestion = questions[currentQuestionIndex];
+            let content = `<h2>${currentQuestion.title}</h2>`;
+            
+            if (currentQuestion.content) {
+                content += `<p>${currentQuestion.content}</p>`;
+            }
+            
+            questionDiv.innerHTML = content;
+            updateButtons();
+        }
+
+        function updateButtons() {
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+
+            prevBtn.classList.toggle('hidden', currentQuestionIndex === 0);
+            nextBtn.textContent = currentQuestionIndex === questions.length - 1 ? "Finish" : "Next";
+        }
+
+        document.getElementById('next-btn').addEventListener('click', function() {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                displayQuestion();
+            }
+        });
+
+        document.getElementById('prev-btn').addEventListener('click', function() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                displayQuestion();
+            }
+        });
+
+        displayQuestion();
+    });
+    </script>
+</body>
+</html>

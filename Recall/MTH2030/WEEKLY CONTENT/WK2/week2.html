@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 2 - MTH2030 Numerical Analysis</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&display=swap">
+    <style>
+    body {
+        font-family: 'Chewy', cursive;
+        background-color: #fff;
+        color: #000;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        box-sizing: border-box;
+    }
+    
+    header {
+        background-color: #fff;
+        color: #000;
+        padding: 10px;
+        margin-bottom: 0;
+        font-size: 1.5em; /* Reduced font size */
+        box-sizing: border-box;
+    }
+    
+    main {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start; /* Align items to the top */
+        height: calc(80vh - 50px); /* Adjusted height to account for header */
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    .content-card {
+        background-color: #fff;
+        padding: 15px; /* Reduced padding */
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        width: 85%;
+        max-width: 900px;
+        height: 80%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        text-align: left;
+        box-sizing: border-box;
+        margin-top: 10px; /* Adjusted margin-top to move card towards the title */
+    }
+    
+    .content-card h2 {
+        font-size: 1.2em; /* Reduced font size */
+        margin-top: 0;
+    }
+    
+    .question {
+        font-size: 1.5em; /* Reduced font size */
+        margin-bottom: 15px; /* Reduced margin */
+    }
+    
+    .controls {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .controls button {
+        font-family: 'Chewy', cursive;
+        font-size: 1em; /* Reduced font size */
+        padding: 8px 16px; /* Reduced padding */
+        background-color: #000;
+        color: #fff;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    .controls button:hover {
+        background-color: #555;
+    }
+    
+    .hidden {
+        display: none;
+    }
+    
+    .timer {
+        font-size: 1.2em; /* Reduced font size */
+        margin-bottom: 15px; /* Reduced margin */
+    }
+    
+    .practice {
+        font-size: 1em; /* Reduced font size */
+        margin-top: 15px; /* Reduced margin */
+    }
+    
+    .subtopic {
+        margin-top: 15px; /* Reduced margin */
+    }
+    
+    .subtopic h3 {
+        font-size: 1.1em; /* Reduced font size */
+    }
+    
+    .subtopic ul {
+        list-style-type: disc;
+        margin-left: 15px; /* Reduced margin */
+    }
+</style>    
+</head>
+<body>
+    <header>
+        <h1>Week 2 - MTH2030 Numerical Analysis</h1>
+    </header>
+    <main>
+        <section class="content-card">
+            <div id="timer" class="timer"></div>
+            <div id="question-container">
+                <div id="question" class="question"></div>
+                <div id="practice-tasks" class="practice"></div>
+            </div>
+            <div class="controls">
+                <button id="prev-btn" class="hidden">Previous</button>
+                <button id="next-btn">Next</button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let currentQuestionIndex = 0;
+            let currentSubtopicIndex = 0;
+            let timerInterval;
+
+            const jsonData = {
+                "title": "Week 2",
+                "topic": "Finite Difference Table",
+                "subtopics": [
+                    {
+                        "title": "Finite Difference Tables",
+                        "questions": [
+                            "What are the properties of Finite Difference tables?",
+                            "Do the example of constructing a finite difference table",
+                            "How to comment on a table"
+                        ]
+                    },
+                    {
+                        "title": "Finite Difference Operators",
+                        "questions": [
+                            "What are Finite Difference Operators?",
+                            "Work on Forward Finite Difference Operator, what are the formulas?",
+                            "How to draw up a forward finite difference operator",
+                            "Look at the examples given",
+                            "Do the exercise"
+                        ]
+                    }
+                ]
+            };
+
+            function getRandomDuration(min, max) {
+                return Math.floor(Math.random() * (max - min + 1) + min) * 60000; // Convert to milliseconds
+            }
+
+            function startTimer(duration) {
+                clearInterval(timerInterval); // Clear any existing timer interval
+                const timerDisplay = document.getElementById('timer');
+                const endTime = Date.now() + duration;
+
+                function updateTimer() {
+                    const timeLeft = Math.max(0, endTime - Date.now());
+                    const minutes = Math.floor(timeLeft / 60000);
+                    const seconds = Math.floor((timeLeft % 60000) / 1000);
+                    timerDisplay.textContent = `Time Remaining: ${minutes}m ${seconds}s`;
+
+                    if (timeLeft <= 0) {
+                        clearInterval(timerInterval);
+                        timerDisplay.textContent = 'Time is up!';
+                    }
+                }
+
+                updateTimer();
+                timerInterval = setInterval(updateTimer, 1000);
+            }
+
+            function displayQuestion() {
+                const questionDiv = document.getElementById('question');
+                const practiceDiv = document.getElementById('practice-tasks');
+
+                if (jsonData.subtopics.length > 0) {
+                    const subtopic = jsonData.subtopics[currentSubtopicIndex];
+                    if (subtopic.questions && subtopic.questions.length > 0) {
+                        const currentQuestion = subtopic.questions[currentQuestionIndex];
+                        const randomTimer = getRandomDuration(15, 30); // Random timer between 15 and 30 minutes
+                        questionDiv.innerHTML = `
+                            <h2>${subtopic.title}</h2>
+                            <p class="question"><strong>Q:</strong> ${currentQuestion}</p>
+                        `;
+                        startTimer(randomTimer);
+                    }
+
+                    updateButtons();
+                }
+            }
+
+            function updateButtons() {
+                const prevBtn = document.getElementById('prev-btn');
+                const nextBtn = document.getElementById('next-btn');
+
+                prevBtn.classList.toggle('hidden', currentQuestionIndex === 0);
+                nextBtn.textContent = currentQuestionIndex === jsonData.subtopics[currentSubtopicIndex].questions.length - 1 ? "Finish" : "Next";
+            }
+
+            document.getElementById('next-btn').addEventListener('click', function() {
+                if (currentQuestionIndex < jsonData.subtopics[currentSubtopicIndex].questions.length - 1) {
+                    currentQuestionIndex++;
+                    displayQuestion();
+                } else {
+                    currentSubtopicIndex++;
+                    currentQuestionIndex = 0;
+                    if (currentSubtopicIndex < jsonData.subtopics.length) {
+                        displayQuestion();
+                    }
+                }
+            });
+
+            document.getElementById('prev-btn').addEventListener('click', function() {
+                if (currentQuestionIndex > 0) {
+                    currentQuestionIndex--;
+                    displayQuestion();
+                }
+            });
+
+            // Initialize the first display
+            displayQuestion();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 4 - APT3080 Management Information Systems</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&display=swap">
+    <style>
+        body {
+            font-family: 'Chewy', cursive;
+            background-color: #fff;
+            color: #000;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        header {
+            background-color: #fff;
+            color: #000;
+            padding: 10px;
+            margin-bottom: 0;
+            font-size: 1.3em;
+            box-sizing: border-box;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align items to the start to reduce space */
+            height: calc(100vh - 70px); /* Adjust height to fit better */
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .content-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 85%;
+            max-width: 900px;
+            height: auto; /* Allow height to adjust based on content */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: left;
+            box-sizing: border-box;
+            margin-top: 20px; /* Add margin to push up */
+        }
+
+        .content-card h2 {
+            font-size: 1.5em;
+            margin-top: 0;
+        }
+
+        .question {
+            font-size: 1.0em;
+            margin-bottom: 20px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between; /* Space buttons to the left and right */
+            gap: 10px;
+        }
+
+        .controls button {
+            font-family: 'Chewy', cursive;
+            font-size: 1.2em;
+            padding: 10px 20px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .controls button:hover {
+            background-color: #555;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 600px) {
+            header {
+                font-size: 1.5em;
+                padding: 8px;
+            }
+
+            main {
+                height: calc(100vh - 60px); /* Adjust height for mobile */
+            }
+
+            .content-card {
+                padding: 15px;
+                margin-top: 10px; /* Adjust margin for mobile */
+            }
+
+            .content-card h2 {
+                font-size: 1.2em;
+            }
+
+            .question {
+                font-size: 1.5em;
+            }
+
+            .controls button {
+                font-size: 1em;
+                padding: 6px 12px; /* Smaller padding for mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Week 4 - APT3080 Management Information Systems</h1>
+    </header>
+    <main>
+        <section class="content-card">
+            <div id="question-container">
+                <div id="question" class="question"></div>
+            </div>
+            <div class="controls">
+                <button id="prev-btn" class="hidden">Previous</button>
+                <button id="next-btn">Next</button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const data = {
+            "Week 4": {
+                "Chapter-Opening Case: Behavioral Targeting: Your Privacy Is the Target": "What is behavioral targeting in the context of information systems?",
+                "Understanding Ethical and Social Issues Related to Systems": "What are the main ethical issues associated with information systems?",
+                "A Model for Thinking about Ethical, Social, and Political Issues": "What is the model for analyzing ethical, social, and political issues related to information systems?",
+                "Five Moral Dimensions of the Information Age": "What are the five moral dimensions of the information age?",
+                "Key Technology Trends that Raise Ethical Issues": "What are some key technology trends that raise ethical concerns?",
+                "Ethics in an Information Society": "What are the basic concepts of responsibility, accountability, and liability in an information society?",
+                "The Moral Dimensions of Information Systems": "What are the information rights related to privacy and freedom in the internet age?",
+                "Interactive Session: Technology Life on the Grid: iPhone Becomes iTrack": "What are the key points from the interactive session on iPhone tracking technology?",
+                "Accountability, Liability, and Control": "What is the significance of accountability in information systems?",
+                "System Quality: Data Quality and System Errors": "What are the key aspects of system quality in information systems?",
+                "Quality of Life: Equity, Access, and Boundaries": "How do information systems affect equity and access to technology?",
+                "Interactive Session: People Too Much Information?": "What are the main takeaways from the interactive session on information overload?",
+                "Learning Tracks": "What are the key learning tracks covered in this chapter?",
+                "Review Summary": "What are the key terms and concepts summarized in this chapter?",
+                "Hands-on MIS Projects": "How can creating a simple blog help in understanding operational excellence?",
+                "Video Cases": "What are the key aspects of management decision problems discussed in the video cases?",
+                "Business Problem-Solving Case: When Radiation Therapy Kills": "How does the case study address ethical dilemmas in the use of information systems in healthcare?"
+            }
+        };
+
+        let currentSectionIndex = 0;
+        const sections = Object.keys(data["Week 4"]);
+        const totalSections = sections.length;
+
+        function displaySection() {
+            const sectionTitle = sections[currentSectionIndex];
+            const question = data["Week 4"][sectionTitle];
+
+            const questionDiv = document.getElementById('question');
+            questionDiv.innerHTML = `
+                <h2>${sectionTitle}</h2>
+                <p>${question}</p>
+            `;
+
+            document.getElementById('prev-btn').classList.toggle('hidden', currentSectionIndex === 0);
+            document.getElementById('next-btn').textContent = currentSectionIndex === totalSections - 1 ? 'Finish' : 'Next';
+        }
+
+        function handleButtonClick(event) {
+            const isNext = event.target.id === 'next-btn';
+
+            if (isNext) {
+                if (currentSectionIndex < totalSections - 1) {
+                    currentSectionIndex++;
+                } else {
+                    alert('You have completed all sections!');
+                    return;
+                }
+            } else {
+                if (currentSectionIndex > 0) {
+                    currentSectionIndex--;
+                }
+            }
+            displaySection();
+        }
+
+        document.getElementById('prev-btn').addEventListener('click', handleButtonClick);
+        document.getElementById('next-btn').addEventListener('click', handleButtonClick);
+
+        displaySection();
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,311 @@
+"Week5": {
+  "Topic": "Advanced Logic Circuits",
+  "Content": [
+    {
+      "title": "Example Block Diagram and Truth Table",
+      "questions": [
+        "Describe a simple example block diagram and truth table:",
+        "a. Block diagram",
+        "b. Truth table"
+      ]
+    },
+    {
+      "title": "Equivalent NAND Gate Symbols",
+      "questions": [
+        "Look at Equivalent NAND gate symbols."
+      ]
+    },
+    {
+      "title": "Implementations of Logic Circuits",
+      "questions": [
+        "Discuss Implementations of:",
+        "a. AND–OR circuit",
+        "b. NAND circuit",
+        "c. Alternate NAND circuit"
+      ]
+    },
+    {
+      "title": "Handling Single-literal Product Terms",
+      "questions": [
+        "Handling single-literal product terms:",
+        "a. AND–OR",
+        "b. NAND–NAND"
+      ]
+    },
+    {
+      "title": "Implementations of OR-AND and NOR Circuits",
+      "questions": [
+        "Explain Implementations of:",
+        "a. OR–AND circuit",
+        "b. NOR circuit",
+        "c. Alternate NOR circuit"
+      ]
+    },
+    {
+      "title": "Equivalent NOR Gate Symbols",
+      "questions": [
+        "What are the Equivalent NOR gate symbols?"
+      ]
+    },
+    {
+      "title": "Handling Single-literal Sum Terms",
+      "questions": [
+        "Explain Handling single-literal sum terms:",
+        "a. OR–AND",
+        "b. NOR–NOR"
+      ]
+    },
+    {
+      "title": "Two-Level Circuit Structures",
+      "questions": [
+        "Discuss Two-level circuit structures:",
+        "a. Two-level circuit",
+        "b. Three-level circuit with inverters"
+      ]
+    },
+    {
+      "title": "Multilevel Circuits and Fan-in Restrictions",
+      "questions": [
+        "Recall Multilevel circuit made necessary by fan-in restrictions:",
+        "a. A single five-input AND gate",
+        "b. Three-level circuit of two-input gates",
+        "c. Four-level circuit of two-input gates"
+      ]
+    },
+    {
+      "title": "Factor and Realization of Different Logic Gates",
+      "questions": [
+        "Factor and realization of different logic gates."
+      ]
+    },
+    {
+      "title": "Even Parity Code Circuits",
+      "questions": [
+        "Look at Even parity code circuits:",
+        "a. Parity code format",
+        "b. Even-parity bit generation circuit",
+        "c. Even-parity bit check circuit"
+      ]
+    },
+    {
+      "title": "Programmable NOT Gate",
+      "questions": [
+        "Explain Programmable NOT gate:",
+        "a. With reference to g and x"
+      ]
+    },
+    {
+      "title": "Equivalent Switching Networks",
+      "questions": [
+        "Look at Equivalent switching networks."
+      ]
+    },
+    {
+      "title": "Design Verification Example",
+      "questions": [
+        "With a diagram, look at an example of design verification."
+      ]
+    },
+    {
+      "title": "Derivation of Truth Table from Timing Diagram",
+      "questions": [
+        "Derive a truth table from a timing diagram:",
+        "a. Logic circuit realizing two functions",
+        "b. Timing diagram",
+        "c. Truth table"
+      ]
+    },
+    {
+      "title": "Propagation Delay through a Logic Gate",
+      "questions": [
+        "Discuss Propagation delay through a logic gate:",
+        "a. Two-input AND gate",
+        "b. Ideal (zero)"
+      ]
+    },
+    {
+      "title": "Characteristics of Digital Electronic Technologies",
+      "questions": [
+        "What are some Characteristics of digital electronic technologies?"
+      ]
+    },
+    {
+      "title": "Decoder Structures",
+      "questions": [
+        "Look at n - 2^n decoder structures.",
+        "2-to-4 decoder with enable input E:",
+        "a. Schematic diagram",
+        "b. I/O diagram"
+      ]
+    },
+    {
+      "title": "Use of 2-to-4 Decoder Modules",
+      "questions": [
+        "What are the Uses of 2-to-4 decoder modules to realize larger decoders:",
+        "a. 3-to-8 decoder",
+        "b. 4-to-16 decoder"
+      ]
+    },
+    {
+      "title": "4-to-16 Decoder Module",
+      "questions": [
+        "Describe a 4-to-16 decoder module:",
+        "a. Logic circuit",
+        "b. Function table",
+        "c. Logic symbol"
+      ]
+    },
+    {
+      "title": "BCD to Decimal Code K-Maps",
+      "questions": [
+        "K-maps for outputs 0, 5, and 9 of a BCD to decimal code:",
+        "a. Decimal",
+        "b. Decimal",
+        "c. Decimal"
+      ]
+    },
+    {
+      "title": "4-to-2 Line Priority Encoder",
+      "questions": [
+        "Describe a 4-to-2 line Priority Encoder:",
+        "a. Functional diagram",
+        "b. Truth table",
+        "c. K-maps",
+        "d. Logic diagram"
+      ]
+    },
+    {
+      "title": "8-bit to 3-bit Priority Encoder",
+      "questions": [
+        "Look at an 8-bit to 3-bit priority encoder:",
+        "a. Generic symbol",
+        "b. Truth table",
+        "c. Logic circuit"
+      ]
+    },
+    {
+      "title": "Example Uses for Encoders",
+      "questions": [
+        "What are some example uses for Encoders?"
+      ]
+    },
+    {
+      "title": "K-channel Multiplexing/Demultiplexing System",
+      "questions": [
+        "Discuss K-channel multiplexing/demultiplexing system:",
+        "a. Multiplex/demultiplex operation",
+        "b. Simple logic configuration for (a)"
+      ]
+    },
+    {
+      "title": "Quad 2-to-1 Multiplexer",
+      "questions": [
+        "Analyze a quad (4-bit) 2-to-1 multiplexer:",
+        "a. Logic symbol",
+        "b. Function table",
+        "c. Logic circuit"
+      ]
+    },
+    {
+      "title": "Multiplexer/Demultiplexer Data Transmission Example",
+      "questions": [
+        "Diagrammatically, describe a Multiplexer/demultiplexer data transmission example."
+      ]
+    },
+    {
+      "title": "Ripple-Carry Adder",
+      "questions": [
+        "Describe Ripple-carry (pseudoparallel) adder."
+      ]
+    },
+    {
+      "title": "High-Speed 4-bit Adder Circuit",
+      "questions": [
+        "What is a high-speed 4-bit adder circuit? Provide a diagram."
+      ]
+    },
+    {
+      "title": "Two's Complement Adder/Subtracter",
+      "questions": [
+        "Explain Two’s complement adder/subtracter."
+      ]
+    },
+    {
+      "title": "Most Significant Stage of an n-Bit Adder",
+      "questions": [
+        "Understand the Most Significant Stage of an n-Bit Adder."
+      ]
+    },
+    {
+      "title": "Two’s Complement Overflow Detection",
+      "questions": [
+        "Explain Two’s complement overflow detection:",
+        "a. Using sign bits",
+        "b. Using carry bits"
+      ]
+    },
+    {
+      "title": "Logic Realization of a 2-bit Comparator",
+      "questions": [
+        "Use a diagram for the Logic realization of a 2-bit comparator."
+      ]
+    },
+    {
+      "title": "Logic Circuit Design Procedure",
+      "questions": [
+        "Describe the LOGIC CIRCUIT DESIGN PROCEDURE."
+      ]
+    },
+    {
+      "title": "Design Flow of Logic Circuit Design",
+      "questions": [
+        "Look at the Design flow of the logic circuit design."
+      ]
+    },
+    {
+      "title": "Seven-Segment Display Elements",
+      "questions": [
+        "Decimal digits displayed on seven-segment display elements."
+      ]
+    },
+    {
+      "title": "BCD to Seven-Segment NAND-NAND Realization",
+      "questions": [
+        "Discuss BCD to seven-segment NAND–NAND realization."
+      ]
+    },
+    {
+      "title": "Four-function Arithmetic Logic Unit",
+      "questions": [
+        "Have an understanding of Four-function arithmetic logic unit:",
+        "a. ALU logic symbol",
+        "b. ALU function table"
+      ]
+    },
+    {
+      "title": "ALU Realization",
+      "questions": [
+        "Describe ALU realization."
+      ]
+    },
+    {
+      "title": "LU Realization",
+      "questions": [
+        "Describe LU realization."
+      ]
+    },
+    {
+      "title": "2-bit by 2-bit Binary Multiplier",
+      "questions": [
+        "Describe a 2-bit by 2-bit binary multiplier."
+      ]
+    },
+    {
+      "title": "Four-by-Four Binary Array Multiplier",
+      "questions": [
+        "Use a diagram for a Four-by-four binary array multiplier."
+      ]
+    }
+  ]
+}
+

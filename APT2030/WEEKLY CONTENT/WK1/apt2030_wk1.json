@@ -1,0 +1,96 @@
+{
+    "title": "Week 1",
+    "topics": [
+        {
+            "title": "Evolution of Microprocessors",
+            "questions": [
+                "Explain the evolution of the Intel microprocessor."
+            ]
+        },
+        {
+            "title": "Evolution of CPUs",
+            "questions": [
+                "Discuss the evolution of CPUs in the 20th and 21st centuries."
+            ]
+        },
+        {
+            "title": "Analog and Digital Signals",
+            "questions": [
+                "Explain the difference between analog and digital signals."
+            ]
+        },
+        {
+            "title": "Digital System Levels",
+            "questions": [
+                "Describe the different levels of digital systems."
+            ]
+        },
+        {
+            "title": "Hierarchy Diagram",
+            "questions": [
+                "Explain the hierarchy diagram of a computer."
+            ]
+        },
+        {
+            "title": "Logic Circuits",
+            "questions": [
+                "Define combinational and sequential logic circuits."
+            ]
+        },
+        {
+            "title": "Electronic Technologies",
+            "questions": [
+                "Discuss important electronic technologies."
+            ]
+        },
+        {
+            "title": "Circuit Diagrams",
+            "questions": [
+                "Draw the diagrams of TTL and CMOS two-input NAND gates."
+            ]
+        },
+        {
+            "title": "Integrated Circuit Growth",
+            "questions": [
+                "Explain the growth trends of integrated circuits."
+            ]
+        },
+        {
+            "title": "High-Level Organization of a Digital Computer",
+            "questions": [
+                "Explain the components of a typical digital computer.",
+                "Use a diagram to illustrate the organization."
+            ]
+        },
+        {
+            "title": "Instruction Cycle of a Stored Program Computer",
+            "questions": [
+                "Explain the steps involved in the instruction cycle of a stored program computer."
+            ]
+        },
+        {
+            "title": "Translation of Programs into Machine Language",
+            "questions": [
+                "Describe how computers translate computer programs into machine language.",
+                "Use a diagram to illustrate the process."
+            ]
+        },
+        {
+            "title": "Digital Circuits",
+            "questions": [
+                "Explain the following digital circuits:",
+                "Generic digital circuits",
+                "Traffic light controllers",
+                "2-2-2 logic gate",
+                "Combinational block diagram",
+                "Traffic light controller state diagram"
+            ]
+        },
+        {
+            "title": "IoT Sensors and Actuators",
+            "questions": [
+                "Name four typical IoT sensors and actuators."
+            ]
+        }
+    ]
+}

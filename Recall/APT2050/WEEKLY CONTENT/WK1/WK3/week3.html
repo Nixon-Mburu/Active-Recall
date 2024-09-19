@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 3 - APT2050 Data Transmission</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&display=swap">
+    <style>
+        body {
+    font-family: 'Chewy', cursive;
+    background-color: #fff;
+    color: #000;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: #fff;
+    color: #000;
+    padding: 10px;
+    margin-bottom: 0;
+    font-size: 1.5em;
+    box-sizing: border-box;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align items to the start to reduce space */
+    height: calc(100vh - 70px); /* Adjust height to fit better */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.content-card {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 600px; /* Reduced width for mobile */
+    text-align: left;
+    box-sizing: border-box;
+    margin-top: 20px; /* Add margin to push up */
+}
+
+.content-card h2 {
+    font-size: 1.2em;
+    margin-top: 0;
+}
+
+.question {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between; /* Space buttons to the left and right */
+    gap: 10px;
+}
+
+.controls button {
+    font-family: 'Chewy', cursive;
+    font-size: 1em;
+    padding: 8px 16px; /* Smaller padding */
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.controls button:hover {
+    background-color: #555;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Mobile Styles */
+@media (max-width: 600px) {
+    header {
+        font-size: 1.2em;
+        padding: 8px;
+    }
+
+    .content-card {
+        padding: 10px;
+        margin-top: 10px; /* Adjust margin for mobile */
+    }
+
+    .content-card h2 {
+        font-size: 1em;
+    }
+
+    .question {
+        font-size: 1em;
+    }
+
+    .controls button {
+        font-size: 0.9em;
+        padding: 6px 12px; /* Smaller padding for mobile */
+    }
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Week 3 - APT2050 Data Transmission</h1>
+    </header>
+    <main>
+        <section class="content-card">
+            <div id="question-container">
+                <div id="question" class="question"></div>
+            </div>
+            <div class="controls">
+                <button id="prev-btn" class="hidden">Previous</button>
+                <button id="next-btn">Next</button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const week = 'Week 3';
+        let currentQuestionIndex = 0;
+        let questions = [
+            { topicTitle: "Terminology", questionText: "Define accurately the following terminology: Transmitter, Receiver, Medium." },
+            { topicTitle: "Link Types", questionText: "Define: Direct Link, Point to point, Multi-point." },
+            { topicTitle: "Communication Modes", questionText: "Define: Simplex, Half-duplex, Full duplex." },
+            { topicTitle: "Concepts", questionText: "What are Frequency, Spectrum, and Bandwidth?" },
+            { topicTitle: "Time-Domain Concepts", questionText: "Define time-domain concepts." },
+            { topicTitle: "Signal Types", questionText: "With diagrams, explain continuous and discrete signals." },
+            { topicTitle: "Periodic Signals", questionText: "Discuss periodic signals with diagrams." },
+            { topicTitle: "Sine Waves", questionText: "What are sine waves?" },
+            { topicTitle: "Signal Properties", questionText: "Define peak amplitude, frequency, phase. For the mentioned previously, what are their formulas and symbols?" },
+            { topicTitle: "Varying Sine Waves", questionText: "With diagram understand varying sine waves." },
+            { topicTitle: "Wavelength", questionText: "Define wavelength, how to calculate wavelength. Do any 5 timed calculations of wavelength." },
+            { topicTitle: "Frequency Domain Concepts", questionText: "What are frequency domain concepts? Addition of frequency domain concepts." },
+            { topicTitle: "Frequency Domain", questionText: "What is a frequency domain?" },
+            { topicTitle: "Spectrum vs Bandwidth", questionText: "Differentiate and compare Spectrum and Bandwidth." },
+            { topicTitle: "DC Component", questionText: "What are signals with DC Component?" },
+            { topicTitle: "Data Rate and Bandwidth", questionText: "Define data rate and Bandwidth." },
+            { topicTitle: "Data Transmission", questionText: "What are analog and digital data transmission? Define data, analog and digital data." },
+            { topicTitle: "Acoustic Spectrum", questionText: "With a diagram, define Acoustic spectrum (analog)." },
+            { topicTitle: "Transmission Types", questionText: "Discuss analog transmission and Digital transmission. What are the Advantages of digital transmission?" },
+            { topicTitle: "Transmission Impairments", questionText: "Discuss transmission impairments, how are they caused?" },
+            { topicTitle: "Signal Quality", questionText: "Discuss attenuation; What are the qualities of received signal strength?" },
+            { topicTitle: "Delay Distortion", questionText: "Define delay distortion." },
+            { topicTitle: "Noise", questionText: "What is noise (1,2)?" },
+            { topicTitle: "Channel Capacity", questionText: "Understand everything about channel capacity." },
+            { topicTitle: "Fourier Analysis", questionText: "What is fourier analysis? Use a diagram. What are the formulas for fourier analysis? Do 5 calculations." },
+            { topicTitle: "Bandwidth Limited Signals", questionText: "Discuss Bandwidth limited signals. Recall maximum data rate of a channel." },
+            { topicTitle: "Theorems", questionText: "Perform calculations in: Nyquist theorem, Shannon's theorem." },
+            { topicTitle: "Signal to Noise Ratio", questionText: "Understand signal to noise ratio issues, look at formulas. Do 5 computations of S/N." },
+            { topicTitle: "Log Manipulation", questionText: "What is Log manipulation? How to convert between logs?" }
+        ];
+
+        // Function to display the current question
+        function displayQuestion() {
+            const questionDiv = document.getElementById('question');
+            if (questions.length > 0) {
+                const currentQuestion = questions[currentQuestionIndex];
+                questionDiv.innerHTML = `
+                    <h2>${currentQuestion.topicTitle}</h2>
+                    <p class="question"><strong>Q:</strong> ${currentQuestion.questionText}</p>
+                `;
+                updateButtons();
+            }
+        }
+
+        // Function to update the button states
+        function updateButtons() {
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+
+            prevBtn.style.display = currentQuestionIndex === 0 ? 'none' : 'inline-block';
+            nextBtn.style.display = currentQuestionIndex === questions.length - 1 ? 'none' : 'inline-block';
+        }
+
+        // Event listener for the 'Next' button
+        document.getElementById('next-btn').addEventListener('click', function() {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                displayQuestion();
+            }
+        });
+
+        // Event listener for the 'Previous' button
+        document.getElementById('prev-btn').addEventListener('click', function() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                displayQuestion();
+            }
+        });
+
+        // Initial question display
+        displayQuestion();
+    });
+    </script>
+</body>
+</html>

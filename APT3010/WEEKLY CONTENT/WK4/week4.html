@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 4 - APT3010 Introduction to AI</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chewy&display=swap">
+    <style>
+        body {
+            font-family: 'Chewy', cursive;
+            background-color: #fff;
+            color: #000;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        header {
+            background-color: #fff;
+            color: #000;
+            padding: 10px;
+            margin-bottom: 0;
+            font-size: 2em;
+            box-sizing: border-box;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align items to the start to reduce space */
+            height: calc(100vh - 70px); /* Adjust height to fit better */
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .content-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 85%;
+            max-width: 900px;
+            height: auto; /* Allow height to adjust based on content */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: left;
+            box-sizing: border-box;
+            margin-top: 20px; /* Add margin to push up */
+        }
+
+        .content-card h2 {
+            font-size: 1.5em;
+            margin-top: 0;
+        }
+
+        .question {
+            font-size: 1.3em;
+            margin-bottom: 20px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between; /* Space buttons to the left and right */
+            gap: 10px;
+        }
+
+        .controls button {
+            font-family: 'Chewy', cursive;
+            font-size: 1.2em;
+            padding: 8px 16px; /* Adjust padding */
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .controls button:hover {
+            background-color: #555;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 600px) {
+            header {
+                font-size: 1.5em;
+                padding: 8px;
+            }
+
+            main {
+                height: calc(100vh - 60px); /* Adjust height for mobile */
+            }
+
+            .content-card {
+                padding: 15px;
+                margin-top: 10px; /* Adjust margin for mobile */
+            }
+
+            .content-card h2 {
+                font-size: 1.2em;
+            }
+
+            .question {
+                font-size: 1.5em;
+            }
+
+            .controls button {
+                font-size: 1em;
+                padding: 6px 12px; /* Smaller padding for mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Week 4 - APT3010 Introduction to AI</h1>
+    </header>
+    <main>
+        <section class="content-card">
+            <div id="question-container">
+                <div id="question" class="question"></div>
+            </div>
+            <div class="controls">
+                <button id="prev-btn" class="hidden">Previous</button>
+                <button id="next-btn">Next</button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // JSON content as provided
+        const questions = [
+            {
+                "title": "Topic",
+                "content": "Search Algorithms"
+            },
+            {
+                "title": "What are problem solving agents?",
+                "content": ""
+            },
+            {
+                "title": "What are (a) Rational agents (b) Problem-solving agents",
+                "content": ""
+            },
+            {
+                "title": "What is a search algorithm/search space?",
+                "content": ""
+            },
+            {
+                "title": "What is a solution in relation to search algorithm?",
+                "content": ""
+            },
+            {
+                "title": "What are the components of a search problem?",
+                "content": ""
+            },
+            {
+                "title": "Key Terms",
+                "content": "Other key terms to understand and define: (a) Search Tree (b) Solution (c) Optimal solution"
+            },
+            {
+                "title": "Robot Lawn Mower Problem",
+                "content": "Answer the 5 parts in detail of the robot lawn mower problem: Define the problem"
+            },
+            {
+                "title": "Robot Lawn Mower Problem - Part 2",
+                "content": "Create a search space with states and actions"
+            },
+            {
+                "title": "Robot Lawn Mower Problem - Part 3",
+                "content": "Employ search algorithms"
+            },
+            {
+                "title": "Robot Lawn Mower Problem - Part 4",
+                "content": "Consider heuristics and optimization criteria"
+            },
+            {
+                "title": "Robot Lawn Mower Problem - Part 5",
+                "content": "Adapt to a dynamic environment, possibly with a learning mechanism"
+            },
+            {
+                "title": "Uniformed Search",
+                "content": "What is a uniformed search in AI?"
+            },
+            {
+                "title": "Breadth First Search (BFS)",
+                "content": "Define Breadth First Search (BFS) in relation to: (a) Exploration strategy (b) Memory usage (c) Completeness (d) Optimality"
+            },
+            {
+                "title": "Depth First Search (DFS)",
+                "content": "Define Depth First Search (DFS) in relation to: (a) Exploration strategy (b) Memory usage (c) Completeness (d) Optimality"
+            },
+            {
+                "title": "BFS and DFS Diagrams",
+                "content": "With the same define BFS and DFS, use a relevant and labelled diagram"
+            },
+            {
+                "title": "Depth Limited Search (DLS)",
+                "content": "Define Depth Limited Search (DLS) in relation to: (a) Exploration strategy (b) Memory usage (c) Completeness (d) Optimality"
+            },
+            {
+                "title": "Uniform Cost Search",
+                "content": ""
+            },
+            {
+                "title": "Iterative Deepening Depth-First Search",
+                "content": "Use a diagram and define iterative deepening depth-first search"
+            },
+            {
+                "title": "Bidirectional Search Algorithm",
+                "content": "What is a bidirectional search algorithm, explain it in the 4 mentioned aspects"
+            },
+            {
+                "title": "Summary of Techniques",
+                "content": "Have a summary of techniques mentioned above and their relevant mentioned aspects"
+            },
+            {
+                "title": "Informed Search",
+                "content": "What is Informed Search in AI?"
+            },
+            {
+                "title": "Best-First Search Algorithm (Greedy Search)",
+                "content": "Best-first Search Algorithm (Greedy Search) and mentioned aspects"
+            },
+            {
+                "title": "A* Search Algorithm",
+                "content": "Look at the A* Search Algorithm"
+            },
+            {
+                "title": "Applications of Search Algorithms",
+                "content": "Explain the Applications of search algorithms"
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+
+        function displayQuestion() {
+            const questionDiv = document.getElementById('question');
+            const currentQuestion = questions[currentQuestionIndex];
+            let content = `<h2>${currentQuestion.title}</h2>`;
+            
+            if (currentQuestion.content) {
+                content += `<p>${currentQuestion.content}</p>`;
+            }
+
+            questionDiv.innerHTML = content;
+            updateButtons();
+        }
+
+        function updateButtons() {
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+
+            prevBtn.classList.toggle('hidden', currentQuestionIndex === 0);
+            nextBtn.textContent = currentQuestionIndex === questions.length - 1 ? "Finish" : "Next";
+        }
+
+        document.getElementById('next-btn').addEventListener('click', function() {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                displayQuestion();
+            }
+        });
+
+        document.getElementById('prev-btn').addEventListener('click', function() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                displayQuestion();
+            }
+        });
+
+        displayQuestion();
+    });
+    </script>
+</body>
+</html>

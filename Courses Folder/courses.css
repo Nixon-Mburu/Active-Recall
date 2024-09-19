@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Chewy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+body {
+    font-family: 'Chewy', cursive;
+    background: #fff;
+    color: #000;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 80px);
+    padding: 20px;
+}
+
+.course-title {
+    font-size: 3em;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #000;
+    font-family: 'Chewy', cursive;
+}
+
+.course-selection {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.course-card {
+    background: #fff;
+    color: #000;
+    border: 3px solid #000; /* Thick black border */        
+    border-radius: 6px;
+    width: 200px;
+    height: 120px;
+    margin: 8px;
+    font-size: 0.9em;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+    text-align: center;
+}
+
+.course-card:hover {
+    background: #f0f0f0;
+    transform: scale(1.03);
+}
+
+.course-card:active {
+    background: #e0e0e0;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
